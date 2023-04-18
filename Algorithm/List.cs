@@ -206,6 +206,16 @@ namespace Algorithm
             return false;
         }
 
+        public bool Exists(Predicate<T> match)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                if (match(items[i]))
+                    return true;
+            }
+            return false;
+        }
+
         public void CopyTo(T[] array)
         {
             Array.Copy(items, array, size);

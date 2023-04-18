@@ -53,32 +53,8 @@ namespace Algorithm
             int[] arr = { 1, 3, 4, 5, 10 };
             MyList<int> list = new MyList<int>(n);
             List<int> list2 = new List<int>(n);
-            //list2.RemoveAt()
-            Console.WriteLine(list.Count);
-            Console.WriteLine(list.Capacity);
 
-            
-            //list.AddRange(arr);
-            Console.WriteLine(list.Count);
-            Console.WriteLine(list.Capacity);
-
-            //list2.Clear();
-            //list2.Add(1);
-            Console.WriteLine(list.Count);
-            Console.WriteLine(list.Capacity);
-
-            //list2.RemoveRange(2,3);
-            Console.WriteLine(list.Count);
-            Console.WriteLine(list.Capacity);
-
-            Console.WriteLine(list.Contains(12));
-            int[] narr = { 6, 5, 7, 8, 9, 11, 5, 1 };
-            //list.CopyTo(1, narr, 6, 3);
-            //MyList<decimal> newlist = new MyList<decimal>();
-            //var newlist = list.ConvertAll(new Converter<int, decimal>(x => (decimal)(x + 1)));
-            var newlist = list.ConvertAll(new Converter<int, decimal>(x => (decimal)(x + 1)));
-
-            Console.WriteLine();
+            Console.WriteLine(list.Exists(x => x == 11));
             //Console.WriteLine(list2[8]);
             //Console.WriteLine(list2[9]);
 
