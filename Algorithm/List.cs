@@ -89,6 +89,7 @@ namespace Algorithm
             items = newItems;
         }
 
+
         public void Insert(int index, T item)
         {
             if (size >= items.Length)
@@ -97,6 +98,15 @@ namespace Algorithm
             CopyTo(index, items, index + 1, ++size - index - 1);
             //Array.Copy(items, index, items, index + 1, size - index - 1);
             items[index] = item;
+        }
+
+        public void InsertRange(int index, IEnumerable<T> collections)
+        {
+            if (collections == null)
+                throw new ArgumentNullException();
+
+            foreach (var it in collections)
+                Insert(index++, it);
         }
 
         private void Grow()
