@@ -137,6 +137,26 @@ namespace Algorithm
             return false;
         }
 
+        
+        public int RemoveAll(Predicate<T> match)
+        {
+            int deleteCount = 0;
+            for (int i = 0; i < items.Length; i++)
+            {
+                for(int j = 0; j < size; j++)
+                {
+                    if (match(items[j]))
+                    {
+                        Remove(items[j]);
+                        deleteCount++;
+                        break;
+                    }
+                }
+            }
+
+            return deleteCount;
+        }
+
         public void RemoveAt(int index)
         {
             if (index < 0 || index >= size)

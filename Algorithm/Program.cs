@@ -49,14 +49,14 @@ namespace Algorithm
 
             // 예시 : 양의 정수 n을 n번 더하는 알고리즘
 
-            int[] n = { 1, 2, 3, 9, 10, 11 };
+            int[] n = { 1, 2, 3, 4, 2 };
             int[] arr = { 4, 5 };
             MyList<int> list = new MyList<int>(n);
             List<int> list2 = new List<int>(n);
 
-            list.InsertRange(1, arr);
+            int delCount = list.RemoveAll(x => x < 3);
+            Console.WriteLine(delCount);
             list.ForEach(x => Console.Write($"{x} "));
-            Console.WriteLine();
 
             /*
             // 배열 요소 삽입
