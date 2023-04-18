@@ -73,7 +73,10 @@ namespace Algorithm
 
             Console.WriteLine(list.Contains(12));
             int[] narr = { 6, 5, 7, 8, 9, 11, 5, 1 };
-            list.CopyTo(1, narr, 6, 3);
+            //list.CopyTo(1, narr, 6, 3);
+            //MyList<decimal> newlist = new MyList<decimal>();
+            //var newlist = list.ConvertAll(new Converter<int, decimal>(x => (decimal)(x + 1)));
+            var newlist = list.ConvertAll(new Converter<int, decimal>(x => (decimal)(x + 1)));
 
             Console.WriteLine();
             //Console.WriteLine(list2[8]);

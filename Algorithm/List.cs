@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -218,6 +219,20 @@ namespace Algorithm
         public void CopyTo(int index, T[] array, int arrayIndex, int count)
         {
             Array.Copy(items, index, array, arrayIndex, count);
+        }
+
+        public MyList<TOutput> ConvertAll<TOutput>(Converter<T,TOutput> converter)
+        {
+            MyList<TOutput> newlist = new MyList<TOutput>();
+            newlist.items = new TOutput[this.Count];
+            newlist.size = this.size;
+
+            for (int i = 0; i < size; i++)
+            {
+                newlist.items[i] = converter(items[i]);
+            }
+
+            return newlist;
         }
 
         public T[] ToArray() { return items; }
