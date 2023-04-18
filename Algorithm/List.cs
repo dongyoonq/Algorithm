@@ -267,6 +267,12 @@ namespace Algorithm
             return newlist;
         }
 
+        public void ForEach(Action<T> action)
+        {
+            for(int i = 0; i < size; i++)
+                action?.Invoke(items[i]);
+        }
+
         public T[] ToArray() { return items; }
 
 

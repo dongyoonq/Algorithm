@@ -56,8 +56,10 @@ namespace Algorithm
 
             //Console.WriteLine(list.Find(x => x > 3));
             var newlist = list.FindAll(x => x > 3);
-            for (int i = 0; i < newlist.Count; i++)
-                Console.WriteLine(newlist[i]);
+
+            newlist.ForEach(x => Console.Write($"{x} "));
+            Console.WriteLine();
+            list2.ForEach(x => Console.Write($"{x} "));
             Console.WriteLine();
             //Console.WriteLine(list2[8]);
             //Console.WriteLine(list2[9]);
