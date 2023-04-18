@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Algorithm
 {
@@ -54,10 +55,31 @@ namespace Algorithm
             MyList<int> list = new MyList<int>(n);
             List<int> list2 = new List<int>(n);
 
+
             list.ForEach(x => Console.Write($"{x} "));
             Console.WriteLine();
 
             list.Sort();
+            list.ForEach(x => Console.Write($"{x} "));
+            Console.WriteLine();
+
+            list.Sort((x,y) => x.CompareTo(y));
+            list.ForEach(x => Console.Write($"{x} "));
+            Console.WriteLine();
+
+            list.Sort((x, y) => y.CompareTo(x));
+            list.ForEach(x => Console.Write($"{x} "));
+            Console.WriteLine();
+
+            list.Sort(new MyComparer<int>());
+            list.ForEach(x => Console.Write($"{x} "));
+            Console.WriteLine();
+
+            list.Reverse();
+            list.ForEach(x => Console.Write($"{x} "));
+            Console.WriteLine();
+
+            list.Reverse(1,3);
             list.ForEach(x => Console.Write($"{x} "));
 
             /*
@@ -106,5 +128,14 @@ namespace Algorithm
 
 
         }
+
+        public class MyComparer<T> : IComparer<T> where T : IComparable
+        {
+            public int Compare([AllowNull] T x, [AllowNull] T y)
+            {
+                return x.CompareTo(y);
+            }
+        }
+
     }
 }

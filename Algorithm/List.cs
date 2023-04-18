@@ -325,6 +325,16 @@ namespace Algorithm
             Array.Sort(items, index, count, comparer);
         }
 
+        public void Reverse()
+        {
+            Array.Reverse(items);
+        }
+
+        public void Reverse(int index, int count)
+        {
+            Array.Reverse(items, index, count);
+        }
+
         public void ForEach(Action<T> action)
         {
             for(int i = 0; i < size; i++)
