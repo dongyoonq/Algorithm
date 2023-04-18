@@ -64,7 +64,6 @@ namespace Algorithm
 
         public void Add(T item)
         {
-
             if (size < items.Length)
                 items[size++] = item;
             else
@@ -72,7 +71,6 @@ namespace Algorithm
                 Grow();
                 items[size++] = item;
             }
-
         }
 
         public void AddRange(IEnumerable<T> collections)
@@ -89,6 +87,16 @@ namespace Algorithm
             T[] newItems = new T[newCapacity];
             Array.Copy(items, newItems, newCapacity);
             items = newItems;
+        }
+
+        public void Insert(int index, T item)
+        {
+            if (size >= items.Length)
+                Grow();
+
+            CopyTo(index, items, index + 1, ++size - index - 1);
+            //Array.Copy(items, index, items, index + 1, size - index - 1);
+            items[index] = item;
         }
 
         private void Grow()

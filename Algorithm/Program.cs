@@ -61,6 +61,11 @@ namespace Algorithm
             Console.WriteLine();
             list2.ForEach(x => Console.Write($"{x} "));
             Console.WriteLine();
+
+            list.Insert(3, 66);
+            list.Insert(5, 77);
+            list.ForEach(x => Console.Write($"{x} "));
+            Console.WriteLine();
             //Console.WriteLine(list2[8]);
             //Console.WriteLine(list2[9]);
 
