@@ -98,6 +98,21 @@ namespace Algorithm
             items[size-- - 1] = default(T);
         }
 
+        public void RemoveRange(int index, int count)
+        {
+            if (index < 0 || count < 0 || index + count > size)
+                throw new ArgumentOutOfRangeException();
+
+            int tmp = index + count;
+            for (; index < size - count; index++)
+            {
+                items[index] = items[index + count];
+            }
+            
+            for(int i = 0; i < count; i++)
+                items[size-- - 1] = default(T);
+        }
+
         public void Clear()
         {
             items = new T[Count];

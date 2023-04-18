@@ -58,15 +58,21 @@ namespace Algorithm
             Console.WriteLine(list2.Capacity);
 
             
-            list.AddRange(arr);
-            Console.WriteLine(list.Count);
-            Console.WriteLine(list.Capacity);
+            list2.AddRange(arr);
+            Console.WriteLine(list2.Count);
+            Console.WriteLine(list2.Capacity);
 
-            list.Clear();
-            list.Add(1);
-            Console.WriteLine(list.Count);
-            Console.WriteLine(list.Capacity);
-            
+            //list2.Clear();
+            //list2.Add(1);
+            Console.WriteLine(list2.Count);
+            Console.WriteLine(list2.Capacity);
+
+            list2.RemoveRange(2,3);
+            Console.WriteLine(list2.Count);
+            Console.WriteLine(list2.Capacity);
+            //Console.WriteLine(list2[8]);
+            //Console.WriteLine(list2[9]);
+
 
             /*
             // 배열 요소 삽입
