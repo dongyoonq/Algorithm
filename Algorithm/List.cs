@@ -160,6 +160,19 @@ namespace Algorithm
             return default(T);
         }
 
+        
+        public MyList<T> FindAll(Predicate<T> match)
+        {
+            MyList<T> newlist = new MyList<T>();
+            for (int i = 0; i < size; i++)
+            {
+                if (match(items[i]))
+                    newlist.Add(items[i]);
+            }
+            return newlist;
+        }
+        
+
         public int FindIndex(Predicate<T> match)
         {
             for (int i = 0; i < size; i++)
