@@ -30,7 +30,7 @@ namespace Algorithm
              * 
              * 프로그래밍에서 데이터를 효율적인 접근 및 수정을 가능하게 하는 자료의 조직, 관리, 저장을 의미
              * 데이터 값의 모임, 또 데이터 간의 관계, 그리고 데이터에 적용할 수 있는 함수나 명령을 의미 */
-            
+
             // < 자료구조 형태 >
             // 선형구조 : 자료간 관계가 1대 1인 구조 ( 배열, 연결리스트, 스택, 큐, 덱 )
             // 비선형구조 : 자료간 관계가 1대 n 혹은 n대 n인 구조 ( 트리, 그래프 )
@@ -49,7 +49,55 @@ namespace Algorithm
 
             // 예시 : 양의 정수 n을 n번 더하는 알고리즘
 
-            Console.WriteLine("Hello World!");
+
+            MyList<int> list = new MyList<int>();
+            List<int> list2 = new List<int>();
+            //list2.RemoveAt()
+
+            // 배열 요소 삽입
+            list.Add(0);
+            list.Add(1);
+            list.Add(7);
+            list.Add(3);
+            list.Add(6);
+
+            for (int i = 0; i < list.Count; i++)
+                Console.WriteLine(list[i]);
+
+            Console.WriteLine();
+
+            list.RemoveAt(2);
+            list.Remove(4);
+            for(int i = 0; i < list.Count; i++)
+                Console.WriteLine(list[i]);
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+            foreach(int item in list)
+                Console.WriteLine(item);
+
+            Console.WriteLine();
+
+            Console.WriteLine(list.FindIndex(x => x == 3));
+            Console.WriteLine(list.IndexOf(6));
+
+            /*
+            Console.WriteLine(list.FindIndex(2, 1, x => x == 7));
+
+            // 배열 요소 접근
+            list[0] = 3;
+            int ival = list[0];
+
+            foreach(int item in list)
+                Console.WriteLine(item);
+
+            // 배열 요소 탐색
+            list.Find(x => x == 2);
+            list.FindAll(x => x == 2);
+            */
+
+
         }
     }
 }
