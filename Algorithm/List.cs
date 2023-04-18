@@ -74,6 +74,36 @@ namespace Algorithm
 
         }
 
+        public void AddRange(IEnumerable<T> collections)
+        {
+            int newCapacity = items.Length;
+            if (collections == null)
+                throw new ArgumentNullException();
+            foreach (var it in collections)
+            {
+                Add(it);
+                newCapacity++;
+            }
+
+            T[] newItems = new T[newCapacity];
+            Array.Copy(items, newItems, newCapacity);
+            items = newItems;
+        }
+
+        private void Grow()
+        {
+            if (items.Length == 0)
+            {
+                items = new T[Marshal.SizeOf<T>()];
+                return;
+            }
+
+            int newCapacity = items.Length * 2;
+            T[] newItems = new T[newCapacity];
+            Array.Copy(items, newItems, items.Length);
+            items = newItems;
+        }
+
         public bool? Remove(T item)
         {
             for (int i = 0; i < size; i++)
@@ -165,37 +195,20 @@ namespace Algorithm
             return FindIndex(x => x.Equals(item));
         }
 
+        public bool Contains(T item)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                if (items[i].Equals(item))
+                    return true;
+            }
+            return false;
+        }
+
         public T[] ToArray() { return items; }
 
-        private void Grow()
-        {
-            if (items.Length == 0)
-            {
-                items = new T[Marshal.SizeOf<T>()];
-                return;
-            }
 
-            int newCapacity = items.Length * 2;
-            T[] newItems = new T[newCapacity];
-            Array.Copy(items, newItems, items.Length);
-            items = newItems;
-        }
-
-        public void AddRange(IEnumerable<T> collections)
-        {
-            int newCapacity = items.Length;
-            if (collections == null)
-                throw new ArgumentNullException();
-            foreach(var it in collections)
-            {
-                Add(it);
-                newCapacity++;
-            }
-
-            T[] newItems = new T[newCapacity];
-            Array.Copy(items, newItems, newCapacity);
-            items = newItems;
-        }
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
         public IEnumerator<T> GetEnumerator()
         {

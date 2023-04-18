@@ -54,22 +54,24 @@ namespace Algorithm
             MyList<int> list = new MyList<int>(n);
             List<int> list2 = new List<int>(n);
             //list2.RemoveAt()
-            Console.WriteLine(list2.Count);
-            Console.WriteLine(list2.Capacity);
+            Console.WriteLine(list.Count);
+            Console.WriteLine(list.Capacity);
 
             
-            list2.AddRange(arr);
-            Console.WriteLine(list2.Count);
-            Console.WriteLine(list2.Capacity);
+            list.AddRange(arr);
+            Console.WriteLine(list.Count);
+            Console.WriteLine(list.Capacity);
 
             //list2.Clear();
             //list2.Add(1);
-            Console.WriteLine(list2.Count);
-            Console.WriteLine(list2.Capacity);
+            Console.WriteLine(list.Count);
+            Console.WriteLine(list.Capacity);
 
-            list2.RemoveRange(2,3);
-            Console.WriteLine(list2.Count);
-            Console.WriteLine(list2.Capacity);
+            list.RemoveRange(2,3);
+            Console.WriteLine(list.Count);
+            Console.WriteLine(list.Capacity);
+
+            Console.WriteLine(list.Contains(12));
             //Console.WriteLine(list2[8]);
             //Console.WriteLine(list2[9]);
 
