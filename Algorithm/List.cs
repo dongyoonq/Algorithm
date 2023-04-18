@@ -305,6 +305,26 @@ namespace Algorithm
             return newlist;
         }
 
+        public void Sort()
+        {
+            Array.Sort(items);
+        }
+
+        public void Sort(Comparison<T> comparison)
+        {
+            Array.Sort(items, comparison);
+        }
+
+        public void Sort(IComparer<T>? comparer)
+        {
+            Array.Sort(items, comparer);
+        }
+
+        public void Sort(int index, int count, IComparer<T>? comparer)
+        {
+            Array.Sort(items, index, count, comparer);
+        }
+
         public void ForEach(Action<T> action)
         {
             for(int i = 0; i < size; i++)

@@ -54,8 +54,10 @@ namespace Algorithm
             MyList<int> list = new MyList<int>(n);
             List<int> list2 = new List<int>(n);
 
-            int delCount = list.RemoveAll(x => x < 3);
-            Console.WriteLine(delCount);
+            list.ForEach(x => Console.Write($"{x} "));
+            Console.WriteLine();
+
+            list.Sort();
             list.ForEach(x => Console.Write($"{x} "));
 
             /*
