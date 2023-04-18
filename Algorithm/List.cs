@@ -205,6 +205,21 @@ namespace Algorithm
             return false;
         }
 
+        public void CopyTo(T[] array)
+        {
+            Array.Copy(items, array, size);
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            Array.Copy(items, 0, array, arrayIndex, size);
+        }
+
+        public void CopyTo(int index, T[] array, int arrayIndex, int count)
+        {
+            Array.Copy(items, index, array, arrayIndex, count);
+        }
+
         public T[] ToArray() { return items; }
 
 

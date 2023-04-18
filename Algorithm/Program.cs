@@ -58,7 +58,7 @@ namespace Algorithm
             Console.WriteLine(list.Capacity);
 
             
-            list.AddRange(arr);
+            //list.AddRange(arr);
             Console.WriteLine(list.Count);
             Console.WriteLine(list.Capacity);
 
@@ -67,11 +67,15 @@ namespace Algorithm
             Console.WriteLine(list.Count);
             Console.WriteLine(list.Capacity);
 
-            list.RemoveRange(2,3);
+            //list2.RemoveRange(2,3);
             Console.WriteLine(list.Count);
             Console.WriteLine(list.Capacity);
 
             Console.WriteLine(list.Contains(12));
+            int[] narr = { 6, 5, 7, 8, 9, 11, 5, 1 };
+            list.CopyTo(1, narr, 6, 3);
+
+            Console.WriteLine();
             //Console.WriteLine(list2[8]);
             //Console.WriteLine(list2[9]);
 
