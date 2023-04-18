@@ -150,6 +150,15 @@ namespace Algorithm
             size = 0;
         }
 
+        public T Find(Predicate<T> match)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                if (match(items[i]))
+                    return items[i];
+            }
+            return default(T);
+        }
 
         public int FindIndex(Predicate<T> match)
         {
