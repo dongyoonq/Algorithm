@@ -50,11 +50,23 @@ namespace Algorithm
             // 예시 : 양의 정수 n을 n번 더하는 알고리즘
 
             int[] n = { 1, 3, 4, 5, 10 };
+            int[] arr = { 1, 3, 4, 5, 10 };
             MyList<int> list = new MyList<int>(n);
-            List<int> list2 = new List<int>();
+            List<int> list2 = new List<int>(n);
             //list2.RemoveAt()
+            Console.WriteLine(list2.Count);
+            Console.WriteLine(list2.Capacity);
+
+            
+            list.AddRange(arr);
             Console.WriteLine(list.Count);
             Console.WriteLine(list.Capacity);
+
+            list.Clear();
+            list.Add(1);
+            Console.WriteLine(list.Count);
+            Console.WriteLine(list.Capacity);
+            
 
             /*
             // 배열 요소 삽입

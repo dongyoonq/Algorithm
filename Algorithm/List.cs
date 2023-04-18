@@ -98,6 +98,12 @@ namespace Algorithm
             items[size-- - 1] = default(T);
         }
 
+        public void Clear()
+        {
+            items = new T[Count];
+            size = 0;
+        }
+
 
         public int FindIndex(Predicate<T> match)
         {
@@ -162,12 +168,18 @@ namespace Algorithm
 
         public void AddRange(IEnumerable<T> collections)
         {
+            int newCapacity = items.Length;
             if (collections == null)
                 throw new ArgumentNullException();
             foreach(var it in collections)
             {
                 Add(it);
+                newCapacity++;
             }
+
+            T[] newItems = new T[newCapacity];
+            Array.Copy(items, newItems, newCapacity);
+            items = newItems;
         }
 
         public IEnumerator<T> GetEnumerator()
