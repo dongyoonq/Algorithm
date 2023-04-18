@@ -50,37 +50,24 @@ namespace Algorithm
 
             // 예시 : 양의 정수 n을 n번 더하는 알고리즘
 
-            int[] n = { 1, 2, 3, 4, 2 };
+            int[] n = { 1, 2, 3, 4 };
             int[] arr = { 4, 5 };
             MyList<int> list = new MyList<int>(n);
             List<int> list2 = new List<int>(n);
+            
+            Console.WriteLine(list.Count);      // 4
+            Console.WriteLine(list.Capacity);   // 4
 
+            list.Add(5);
 
-            list.ForEach(x => Console.Write($"{x} "));
-            Console.WriteLine();
+            Console.WriteLine(list.Count);      // 5
+            Console.WriteLine(list.Capacity);   // 8
 
-            list.Sort();
-            list.ForEach(x => Console.Write($"{x} "));
-            Console.WriteLine();
+            list.TrimExcess();
 
-            list.Sort((x,y) => x.CompareTo(y));
-            list.ForEach(x => Console.Write($"{x} "));
-            Console.WriteLine();
-
-            list.Sort((x, y) => y.CompareTo(x));
-            list.ForEach(x => Console.Write($"{x} "));
-            Console.WriteLine();
-
-            list.Sort(new MyComparer<int>());
-            list.ForEach(x => Console.Write($"{x} "));
-            Console.WriteLine();
-
-            list.Reverse();
-            list.ForEach(x => Console.Write($"{x} "));
-            Console.WriteLine();
-
-            list.Reverse(1,3);
-            list.ForEach(x => Console.Write($"{x} "));
+            Console.WriteLine(list.Count);      // 5
+            Console.WriteLine(list.Capacity);   // 5
+            
 
             /*
             // 배열 요소 삽입

@@ -341,6 +341,13 @@ namespace Algorithm
                 action?.Invoke(items[i]);
         }
 
+        public void TrimExcess()
+        {
+            T[] newItem = new T[size];
+            CopyTo(0, newItem, 0, size);
+            items = newItem;
+        }
+
         public T[] ToArray() { return items; }
 
 
