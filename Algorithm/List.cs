@@ -429,6 +429,11 @@ namespace Algorithm
             items = newItem;
         }
 
+        /// <summary>
+        /// Predicate 델리게이트를 매개변수로 지정자의 조건에 맞는 요소가 모두 일치하는지 여부 반환
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
         public bool TrueForAll(Predicate<T> match)
         {
             if (match == null)
