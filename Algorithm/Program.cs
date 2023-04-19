@@ -53,53 +53,6 @@ namespace Algorithm
 
             MyLinkedList<int> myLinkedList = new MyLinkedList<int>();
             LinkedList<int> list = new LinkedList<int>();
-            
-            /*
-            MyLinkedListNode<int> n1 = myLinkedList.AddFirst(1);
-            MyLinkedListNode<int> n2 = myLinkedList.AddFirst(2);
-            MyLinkedListNode<int> n3 = myLinkedList.AddFirst(3);
-            MyLinkedListNode<int> n4 = myLinkedList.AddFirst(4);
-            MyLinkedListNode<int> n5 = myLinkedList.AddFirst(5);
-            MyLinkedListNode<int> n6 = myLinkedList.AddFirst(6);    // 6 5 4 3 2 1
-            */
-
-            /*
-            PrintList(myLinkedList);
-            bool t = myLinkedList.Remove(4);
-            Console.WriteLine(t);
-            PrintList(myLinkedList);
-            */
-            int[] arr = new int[8];
-
-            myLinkedList.AddFirst(10);
-            myLinkedList.AddFirst(5);
-            myLinkedList.AddFirst(21);
-            myLinkedList.AddFirst(41);
-            myLinkedList.AddFirst(10);
-
-            Console.WriteLine(myLinkedList.Contains(21));
-            
         }
-
-        static void PrintList<T>(MyLinkedList<T> linkedlist)
-        {
-            MyLinkedListNode<T> first = linkedlist.First;
-            for (int i = 0; i < linkedlist.Count; i++)
-            {
-                Console.Write($"{first.Value} ");
-                first = first.Next;
-            }
-            Console.WriteLine();
-        }
-        /*
-        public class MyComparer<T> : IComparer<T> where T : IComparable
-        {
-            public int Compare([AllowNull] T x, [AllowNull] T y)
-            {
-                return x.CompareTo(y);
-            }
-        }
-        */
-
     }
 }

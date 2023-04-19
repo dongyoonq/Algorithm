@@ -636,5 +636,15 @@ namespace Algorithm
             for (int i = 0; i < size; i++)
                 yield return items[i];
         }
+
+        /*
+        public class MyComparer<T> : IComparer<T> where T : IComparable
+        {
+            public int Compare([AllowNull] T x, [AllowNull] T y)
+            {
+                return x.CompareTo(y);
+            }
+        }
+        */
     }
 }
