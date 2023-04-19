@@ -50,8 +50,38 @@ namespace Algorithm
                 // 가장 높은 차수의 계수와 나머지 모든 항을 제거하고표기
                 // 알고리즘의 대략적인 효율을 파악할 수 있는 수단.
             }
+
+            MyLinkedList<int> myLinkedList = new MyLinkedList<int>();
+            LinkedList<int> list = new LinkedList<int>();
+            
+            MyLinkedListNode<int> n1 = myLinkedList.AddFirst(1);
+            MyLinkedListNode<int> n2 = myLinkedList.AddFirst(2);
+            MyLinkedListNode<int> n3 = myLinkedList.AddFirst(3);
+            MyLinkedListNode<int> n4 = myLinkedList.AddFirst(4);
+            MyLinkedListNode<int> n5 = myLinkedList.AddFirst(5);
+            MyLinkedListNode<int> n6 = myLinkedList.AddFirst(6);    // 6 5 4 3 2 1
+
+            /*
+            PrintList(myLinkedList);
+            bool t = myLinkedList.Remove(4);
+            Console.WriteLine(t);
+            PrintList(myLinkedList);
+            */
+
+            foreach(int i in myLinkedList)
+                Console.Write($"{i} ");
         }
 
+        static void PrintList<T>(MyLinkedList<T> linkedlist)
+        {
+            MyLinkedListNode<T> first = linkedlist.First;
+            for (int i = 0; i < linkedlist.Count; i++)
+            {
+                Console.Write($"{first.Value} ");
+                first = first.Next;
+            }
+            Console.WriteLine();
+        }
         /*
         public class MyComparer<T> : IComparer<T> where T : IComparable
         {
