@@ -33,7 +33,6 @@ namespace Algorithm
             }
         }
 
-
         public MyList()
         {
             this.items = new T[DefaultCapacity];
@@ -86,7 +85,6 @@ namespace Algorithm
             items = newItems;
         }
 
-
         public void Insert(int index, T item)
         {
             if (size >= items.Length)
@@ -133,7 +131,6 @@ namespace Algorithm
 
             return false;
         }
-
         
         public int RemoveAll(Predicate<T> match)
         {
@@ -216,7 +213,6 @@ namespace Algorithm
             return newlist;
         }
         
-
         public int FindIndex(Predicate<T> match)
         {
             for (int i = 0; i < size; i++)
@@ -256,7 +252,6 @@ namespace Algorithm
 
             return -1;
         }
-
 
         public int FindLastIndex(Predicate<T> match)
         {
@@ -376,7 +371,6 @@ namespace Algorithm
 
             return newlist;
         }
-
         
         public MyList<T> GetRange(int index, int count)
         {
@@ -441,7 +435,6 @@ namespace Algorithm
         /// Enumerator Interface 구현
         /// https://nomad-programmer.tistory.com/188
         /// /////////////////////////////////////////////////////////////////////////////////////////
-
 
         public T Current { get { return items[position]; } }
 
