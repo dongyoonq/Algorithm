@@ -68,8 +68,16 @@ namespace Algorithm
         /// <returns></returns>
         public T this[int index]
         {
-            get { return items[index]; }
-            set { items[index] = value; }
+            get {
+                if (index < 0 || index >= size)
+                    throw new IndexOutOfRangeException();
+                return items[index]; 
+            }
+            set {
+                if (index < 0 || index >= size)
+                    throw new IndexOutOfRangeException();
+                items[index] = value; 
+            }
         }
 
         /// <summary>
