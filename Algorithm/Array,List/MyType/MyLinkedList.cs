@@ -285,7 +285,32 @@ namespace Algorithm
             tail = null;
         }
 
-        public MyLinkedListNode<T> Find(T value)
+        /// <summary>
+        /// 특정 조건에 맞는 요소를 순회하며 그 요소가 List에 있으면 True, 아니면 False를 반환하는 메서드
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool Contains(T value)
+        {
+            MyLinkedListNode<T> pointer = head;
+
+            while (pointer != null)
+            {
+                if (pointer.Value.Equals(value))
+                    return true;
+
+                pointer = pointer.next;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 특정 조건에 맞는 요소를 순회하며 처음 나타나는 Node를 반환하는 메서드
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public MyLinkedListNode<T>? Find(T value)
         {
             MyLinkedListNode<T> pointer = head;
 
@@ -300,7 +325,12 @@ namespace Algorithm
             return null;
         }
 
-        public MyLinkedListNode<T> FindLast(T value)
+        /// <summary>
+        /// 특정 조건에 맞는 요소를 역순회하며 처음 나타나는 Node를 반환하는 메서드
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public MyLinkedListNode<T>? FindLast(T value)
         {
             MyLinkedListNode<T> pointer = tail;
 

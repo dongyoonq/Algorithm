@@ -76,18 +76,8 @@ namespace Algorithm
             myLinkedList.AddFirst(21);
             myLinkedList.AddFirst(41);
             myLinkedList.AddFirst(10);
-            
-            foreach (int i in myLinkedList)
-                Console.Write($"{i} ");
-            Console.WriteLine();
 
-            MyLinkedListNode<int> node = myLinkedList.FindLast(10);
-            Console.WriteLine(myLinkedList.FindLast(10));
-            
-            
-            foreach (int i in myLinkedList)
-                Console.Write($"{i} ");
-            Console.WriteLine();
+            Console.WriteLine(myLinkedList.Contains(21));
             
         }
 
