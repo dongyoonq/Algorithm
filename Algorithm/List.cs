@@ -429,6 +429,18 @@ namespace Algorithm
             items = newItem;
         }
 
+        public bool TrueForAll(Predicate<T> match)
+        {
+            if (match == null)
+                throw new ArgumentNullException();
+
+            foreach (T item in items)
+                if (!match(item))
+                    return false;
+
+            return true;
+        }
+
         public T[] ToArray() { return items; }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
