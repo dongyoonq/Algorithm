@@ -198,7 +198,16 @@ namespace Algorithm
             return default(T);
         }
 
-        
+        public T FindLast(Predicate<T> match)
+        {
+            for (int i = size - 1; i >= 0; i--)
+            {
+                if (match(items[i]))
+                    return items[i];
+            }
+            return default(T);
+        }
+
         public MyList<T> FindAll(Predicate<T> match)
         {
             MyList<T> newlist = new MyList<T>();
@@ -251,9 +260,75 @@ namespace Algorithm
             return -1;
         }
 
+
+        public int FindLastIndex(Predicate<T> match)
+        {
+            for (int i = size - 1; i >= 0; i--)
+            {
+                if (match(items[i]))
+                    return i;
+            }
+
+            return -1;
+        }
+
+        public int FindLastIndex(int startIndex, Predicate<T> match)
+        {
+            if (startIndex < 0 || startIndex > size)
+                throw new ArgumentOutOfRangeException();
+
+            for (int i = startIndex; i >= 0; i--)
+            {
+                if (match(items[i]))
+                    return i;
+            }
+
+            return -1;
+        }
+
+        public int FindLastIndex(int startIndex, int count, Predicate<T> match)
+        {
+            if (startIndex < 0 || count < 0 || startIndex - count + 1 < 0)
+                throw new ArgumentOutOfRangeException();
+
+            int tmp = startIndex - count + 1;
+            for (int i = startIndex; i >= tmp; i--)
+            {
+                if (match(items[i]))
+                    return i;
+            }
+
+            return -1;
+        }
+
         public int IndexOf(int item)
         {
             return FindIndex(x => x.Equals(item));
+        }
+
+        public int IndexOf(int item, int index)
+        {
+            return FindIndex(index, x => x.Equals(item));
+        }
+
+        public int IndexOf(int item, int index, int count)
+        {
+            return FindIndex(index, count, x => x.Equals(item));
+        }
+
+        public int LastIndexOf(int item)
+        {
+            return FindLastIndex(x => x.Equals(item));
+        }
+
+        public int LastIndexOf(int item, int index)
+        {
+            return FindLastIndex(index, x => x.Equals(item));
+        }
+
+        public int LastIndexOf(int item, int index, int count)
+        {
+            return FindLastIndex(index, count, x => x.Equals(item));
         }
 
         public bool Contains(T item)
@@ -302,6 +377,21 @@ namespace Algorithm
                 newlist.items[i] = converter(items[i]);
             }
 
+            return newlist;
+        }
+
+        
+        public MyList<T> GetRange(int index, int count)
+        {
+            if (index < 0 || count < 0 || index + count > size)
+                throw new ArgumentOutOfRangeException();
+
+            MyList<T> newlist = new MyList<T>();
+            for(int i = index; i < index + count; i++)
+            {
+                newlist.Add(items[i]);
+            }
+            newlist.TrimExcess();
             return newlist;
         }
 
