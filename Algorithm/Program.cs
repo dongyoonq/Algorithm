@@ -70,23 +70,25 @@ namespace Algorithm
             PrintList(myLinkedList);
             */
             int[] arr = new int[8];
+
             myLinkedList.AddFirst(10);
             myLinkedList.AddFirst(5);
             myLinkedList.AddFirst(21);
             myLinkedList.AddFirst(41);
+            myLinkedList.AddFirst(10);
+            
             foreach (int i in myLinkedList)
                 Console.Write($"{i} ");
             Console.WriteLine();
 
-            myLinkedList.CopyTo(arr, 3);
-            foreach(int i in arr)
+            MyLinkedListNode<int> node = myLinkedList.FindLast(10);
+            Console.WriteLine(myLinkedList.FindLast(10));
+            
+            
+            foreach (int i in myLinkedList)
                 Console.Write($"{i} ");
-
             Console.WriteLine();
-            int[] arrr = { 1, 5, 9, 10, 11 };
-            MyLinkedList<int> sa = new MyLinkedList<int>(arrr);
-            foreach (int i in sa)
-                Console.Write($"{i} ");
+            
         }
 
         static void PrintList<T>(MyLinkedList<T> linkedlist)

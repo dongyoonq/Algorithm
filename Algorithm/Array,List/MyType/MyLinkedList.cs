@@ -15,14 +15,12 @@ namespace Algorithm
         {
 
         }
-
         
         public MyLinkedList(IEnumerable<T> collection)
         {
             foreach(T item in collection)
                 AddLast(item);
         }
-        
 
         public MyLinkedListNode<T>? First { get { return head; } }
         public MyLinkedListNode<T>? Last { get { return tail; } }
@@ -285,6 +283,36 @@ namespace Algorithm
             
             head = null;
             tail = null;
+        }
+
+        public MyLinkedListNode<T> Find(T value)
+        {
+            MyLinkedListNode<T> pointer = head;
+
+            while (pointer != null)
+            {
+                if (pointer.Value.Equals(value))
+                    return pointer;
+
+                pointer = pointer.next;
+            }
+
+            return null;
+        }
+
+        public MyLinkedListNode<T> FindLast(T value)
+        {
+            MyLinkedListNode<T> pointer = tail;
+
+            while (pointer != null)
+            {
+                if (pointer.Value.Equals(value))
+                    return pointer;
+
+                pointer = pointer.prev;
+            }
+
+            return null;
         }
 
         /// <summary>
