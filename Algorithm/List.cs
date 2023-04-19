@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Algorithm
 {
-    internal class MyList<T> : IEnumerable<T>, IEnumerator
+    internal class MyList<T> : IEnumerator<T>, IEnumerable<T>
     {
         private const int DefaultCapacity = 0;
 
@@ -33,9 +33,6 @@ namespace Algorithm
             }
         }
 
-        //public T Current {  get { return items[position]; } }
-
-        public object Current { get { return items[position]; } }
 
         public MyList()
         {
@@ -440,23 +437,26 @@ namespace Algorithm
 
         public T[] ToArray() { return items; }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// Enumerator Interface 구현
+        /// https://nomad-programmer.tistory.com/188
+        /// /////////////////////////////////////////////////////////////////////////////////////////
 
-        ////////////////////////////////////////////////////////////////////////////////////////////
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            return (IEnumerator<T>)this;
-        }
+        public T Current { get { return items[position]; } }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return items.GetEnumerator();
-        }
+        object IEnumerator.Current { get { return items[position]; } }
 
         public bool MoveNext()
         {
+            if(position == (size - 1))
+            {
+                Reset();
+                return false;
+            }
+
             position++;
-            return (position < items.Length);
+            return (position < size);
         }
 
         public void Reset()
@@ -466,7 +466,19 @@ namespace Algorithm
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < size; i++)
+                yield return items[i];
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            for (int i = 0; i < size; i++)
+                yield return items[i];
         }
     }
 }

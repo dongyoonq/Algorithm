@@ -55,11 +55,9 @@ namespace Algorithm
             MyList<int> list = new MyList<int>(n);
             List<int> list2 = new List<int>(n);
 
-            Console.WriteLine(list.FindLastIndex(3,4, x=>x==2));
-
-            var nlist = list.GetRange(2, 5);
-
-            Console.WriteLine();
+            //list.GetEnumerator();
+            foreach(int i in list)
+                Console.WriteLine(i);
             
 
             /*
