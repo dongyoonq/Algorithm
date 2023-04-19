@@ -7,16 +7,22 @@ namespace Algorithm
 {
     internal class MyLinkedList<T> : IEnumerable<T>
     {
-        private int count;
-        private MyLinkedListNode<T>? head;
-        private MyLinkedListNode<T>? tail;
+        private int count = 0;
+        private MyLinkedListNode<T>? head = null;
+        private MyLinkedListNode<T>? tail = null;
 
         public MyLinkedList()
         {
-            this.head = null;
-            this.tail = null;
-            count = 0;
+
         }
+
+        
+        public MyLinkedList(IEnumerable<T> collection)
+        {
+            foreach(T item in collection)
+                AddLast(item);
+        }
+        
 
         public MyLinkedListNode<T>? First { get { return head; } }
         public MyLinkedListNode<T>? Last { get { return tail; } }
