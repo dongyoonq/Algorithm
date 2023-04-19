@@ -281,6 +281,24 @@ namespace Algorithm
             tail = null;
         }
 
+        /// <summary>
+        /// 배열에 특정 인덱스부터 LinkedList의 요소들을 삽입해주는 메서드
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="index"></param>
+        public void CopyTo(T[] array, int index)
+        {
+            if (count + index > array.Length)
+                throw new ArgumentOutOfRangeException();
+
+            MyLinkedListNode<T> pointer = head;
+            while (pointer != null)
+            {
+                array[index] = pointer.Value;
+                index++; pointer = pointer.next;
+            }
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             MyLinkedListNode<T> pointer = head;

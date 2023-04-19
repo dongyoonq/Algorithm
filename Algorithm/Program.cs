@@ -54,12 +54,14 @@ namespace Algorithm
             MyLinkedList<int> myLinkedList = new MyLinkedList<int>();
             LinkedList<int> list = new LinkedList<int>();
             
+            /*
             MyLinkedListNode<int> n1 = myLinkedList.AddFirst(1);
             MyLinkedListNode<int> n2 = myLinkedList.AddFirst(2);
             MyLinkedListNode<int> n3 = myLinkedList.AddFirst(3);
             MyLinkedListNode<int> n4 = myLinkedList.AddFirst(4);
             MyLinkedListNode<int> n5 = myLinkedList.AddFirst(5);
             MyLinkedListNode<int> n6 = myLinkedList.AddFirst(6);    // 6 5 4 3 2 1
+            */
 
             /*
             PrintList(myLinkedList);
@@ -67,8 +69,17 @@ namespace Algorithm
             Console.WriteLine(t);
             PrintList(myLinkedList);
             */
+            int[] arr = new int[8];
+            myLinkedList.AddFirst(10);
+            myLinkedList.AddFirst(5);
+            myLinkedList.AddFirst(21);
+            myLinkedList.AddFirst(41);
+            foreach (int i in myLinkedList)
+                Console.Write($"{i} ");
+            Console.WriteLine();
 
-            foreach(int i in myLinkedList)
+            myLinkedList.CopyTo(arr, 3);
+            foreach(int i in arr)
                 Console.Write($"{i} ");
         }
 
