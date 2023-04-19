@@ -15,11 +15,17 @@ namespace Algorithm
         private int size;
         private int position = -1;
 
+        /// <summary>
+        /// LIST 요소의 개수
+        /// </summary>
         public int Count
         {
             get { return size; }
         }
 
+        /// <summary>
+        /// LIST 의 최대 수용량
+        /// </summary>
         public int Capacity
         {
             get { return items.Length; }
@@ -33,6 +39,9 @@ namespace Algorithm
             }
         }
 
+        /// <summary>
+        /// LIST 초기화하는 기본 생성자 및 오버로딩
+        /// </summary>
         public MyList()
         {
             this.items = new T[DefaultCapacity];
@@ -52,12 +61,21 @@ namespace Algorithm
             AddRange(collections);
         }
 
+        /// <summary>
+        /// 인덱스로 LIST를 접근할 수 있게 하는 인덱스 프로퍼티
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public T this[int index]
         {
             get { return items[index]; }
             set { items[index] = value; }
         }
 
+        /// <summary>
+        /// LIST의 마지막 요소 다음 인덱스에 데이터를 삽입하는 메서드
+        /// </summary>
+        /// <param name="item"></param>
         public void Add(T item)
         {
             if (size < items.Length)
@@ -69,6 +87,10 @@ namespace Algorithm
             }
         }
 
+        /// <summary>
+        /// LIST의 마지막 요소 다음 인덱스에 Enumerable한 데이터를 삽입하는 메서드
+        /// </summary>
+        /// <param name="collections"></param>
         public void AddRange(IEnumerable<T> collections)
         {
             int newCapacity = items.Length;
@@ -85,6 +107,11 @@ namespace Algorithm
             items = newItems;
         }
 
+        /// <summary>
+        /// LIST의 특정 인덱스에 데이터를 삽입하는 메서드
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="item"></param>
         public void Insert(int index, T item)
         {
             if (size >= items.Length)
@@ -95,6 +122,11 @@ namespace Algorithm
             items[index] = item;
         }
 
+        /// <summary>
+        /// LIST의 특정 인덱스에 Enumerable한 데이터를 삽입하는 메서드
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="collections"></param>
         public void InsertRange(int index, IEnumerable<T> collections)
         {
             if (collections == null)
@@ -104,6 +136,9 @@ namespace Algorithm
                 Insert(index++, it);
         }
 
+        /// <summary>
+        /// LIST의 크기를 늘리는 알고리즘
+        /// </summary>
         private void Grow()
         {
             if (items.Length == 0)
@@ -118,6 +153,11 @@ namespace Algorithm
             items = newItems;
         }
 
+        /// <summary>
+        /// 지정한 데이터를 LIST에서 첫번째로 나타나는 요소를 삭제하는 메서드
+        /// </summary>
+        /// <param name="item">삭제할 요소</param>
+        /// <returns></returns>
         public bool? Remove(T item)
         {
             for (int i = 0; i < size; i++)
@@ -131,7 +171,12 @@ namespace Algorithm
 
             return false;
         }
-        
+
+        /// <summary>
+        /// 지정한 데이터를 LIST에서 전부 삭제하는 메서드
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
         public int RemoveAll(Predicate<T> match)
         {
             int deleteCount = 0;
@@ -151,6 +196,10 @@ namespace Algorithm
             return deleteCount;
         }
 
+        /// <summary>
+        /// 리스트의 특정 위치의 요소를 삭제하는 메서드
+        /// </summary>
+        /// <param name="index"></param>
         public void RemoveAt(int index)
         {
             if (index < 0 || index >= size)
@@ -161,6 +210,11 @@ namespace Algorithm
             items[size-- - 1] = default(T);
         }
 
+        /// <summary>
+        /// 인덱스위치 부터 횟수만큼 요소를 삭제하는 메서드
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="count"></param>
         public void RemoveRange(int index, int count)
         {
             if (index < 0 || count < 0 || index + count > size)
@@ -176,12 +230,20 @@ namespace Algorithm
                 items[size-- - 1] = default(T);
         }
 
+        /// <summary>
+        /// LIST 요소를 모두 제거하는 메서드
+        /// </summary>
         public void Clear()
         {
             items = new T[Count];
             size = 0;
         }
 
+        /// <summary>
+        /// LIST에서 Predicate 델리게이트로 설정한 조건과 일치하는 첫번째 요소를 반환하는 메서드
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
         public T Find(Predicate<T> match)
         {
             for (int i = 0; i < size; i++)
@@ -192,6 +254,11 @@ namespace Algorithm
             return default(T);
         }
 
+        /// <summary>
+        /// LIST에서 Predicate 델리게이트로 설정한 조건과 일치하는 마지막 요소를 반환하는 메서드
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
         public T FindLast(Predicate<T> match)
         {
             for (int i = size - 1; i >= 0; i--)
@@ -202,6 +269,11 @@ namespace Algorithm
             return default(T);
         }
 
+        /// <summary>
+        /// LIST에서 Predicate 델리게이트로 설정한 조건과 일치하는 모든 요소를 반환하는 메서드
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
         public MyList<T> FindAll(Predicate<T> match)
         {
             MyList<T> newlist = new MyList<T>();
@@ -212,7 +284,12 @@ namespace Algorithm
             }
             return newlist;
         }
-        
+
+        /// <summary>
+        /// LIST에서 Predicate 델리게이트로 설정한 조건과 일치하는 첫번째 요소의 인덱스를 반환하는 메서드, 오버로딩
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
         public int FindIndex(Predicate<T> match)
         {
             for (int i = 0; i < size; i++)
@@ -253,6 +330,11 @@ namespace Algorithm
             return -1;
         }
 
+        /// <summary>
+        /// LIST에서 Predicate 델리게이트로 설정한 조건과 일치하는 마지막 요소의 인덱스를 반환하는 메서드, 오버로딩
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
         public int FindLastIndex(Predicate<T> match)
         {
             for (int i = size - 1; i >= 0; i--)
@@ -293,6 +375,11 @@ namespace Algorithm
             return -1;
         }
 
+        /// <summary>
+        /// 지정한 데이터가 LIST에서 일치하는 첫번째 요소의 인덱스를 반환하는 메서드, 오버로딩
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public int IndexOf(int item)
         {
             return FindIndex(x => x.Equals(item));
@@ -308,6 +395,11 @@ namespace Algorithm
             return FindIndex(index, count, x => x.Equals(item));
         }
 
+        /// <summary>
+        /// 지정한 데이터가 LIST에서 일치하는 마지막 요소의 인덱스를 반환하는 메서드, 오버로딩
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public int LastIndexOf(int item)
         {
             return FindLastIndex(x => x.Equals(item));
@@ -323,6 +415,11 @@ namespace Algorithm
             return FindLastIndex(index, count, x => x.Equals(item));
         }
 
+        /// <summary>
+        /// LIST에서 지정한 데이터가 있는지 반환하는 메서드
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public bool Contains(T item)
         {
             for (int i = 0; i < size; i++)
@@ -333,6 +430,11 @@ namespace Algorithm
             return false;
         }
 
+        /// <summary>
+        /// Predicate 델리게이트로 지정한 조건으로 데이터가 있는지 반환하는 메서드
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
         public bool Exists(Predicate<T> match)
         {
             for (int i = 0; i < size; i++)
@@ -343,6 +445,10 @@ namespace Algorithm
             return false;
         }
 
+        /// <summary>
+        /// LIST의 요소들을 복사하는 메서드, 오버로딩
+        /// </summary>
+        /// <param name="array"></param>
         public void CopyTo(T[] array)
         {
             Array.Copy(items, array, size);
@@ -358,6 +464,12 @@ namespace Algorithm
             Array.Copy(items, index, array, arrayIndex, count);
         }
 
+        /// <summary>
+        /// LIST를 다른 타입으로 변환시키고 반환하는 메서드
+        /// </summary>
+        /// <typeparam name="TOutput"></typeparam>
+        /// <param name="converter"></param>
+        /// <returns></returns>
         public MyList<TOutput> ConvertAll<TOutput>(Converter<T,TOutput> converter)
         {
             MyList<TOutput> newlist = new MyList<TOutput>();
@@ -372,6 +484,12 @@ namespace Algorithm
             return newlist;
         }
         
+        /// <summary>
+        /// LIST에서 인덱스위치로 부터 특정 개수만큼 요소를 추출해 새로운 LIST를 만들어주는 메서드
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         public MyList<T> GetRange(int index, int count)
         {
             if (index < 0 || count < 0 || index + count > size)
@@ -386,6 +504,9 @@ namespace Algorithm
             return newlist;
         }
 
+        /// <summary>
+        /// LIST 요소를 정렬시키는 메서드, 오버로딩
+        /// </summary>
         public void Sort()
         {
             Array.Sort(items);
@@ -406,6 +527,9 @@ namespace Algorithm
             Array.Sort(items, index, count, comparer);
         }
 
+        /// <summary>
+        /// LIST 요소를 뒤집어주는 메서드, 오버로딩
+        /// </summary>
         public void Reverse()
         {
             Array.Reverse(items);
@@ -416,12 +540,19 @@ namespace Algorithm
             Array.Reverse(items, index, count);
         }
 
+        /// <summary>
+        /// Action 델리게이트에 들어온 메서드를 각 요소마다 수행시켜주는 메서드
+        /// </summary>
+        /// <param name="action"></param>
         public void ForEach(Action<T> action)
         {
             for(int i = 0; i < size; i++)
                 action?.Invoke(items[i]);
         }
 
+        /// <summary>
+        /// LIST에 있는 용량이 요소보다 클때 용량을 요소에 맞춰주는 메서드
+        /// </summary>
         public void TrimExcess()
         {
             T[] newItem = new T[size];
@@ -453,6 +584,9 @@ namespace Algorithm
         /// https://nomad-programmer.tistory.com/188
         /// /////////////////////////////////////////////////////////////////////////////////////////
 
+        /// <summary>
+        /// IEnumerator 인터페이스를 상속받아 메서드 및 프로퍼티를 구현
+        /// </summary>
         public T Current { get { return items[position]; } }
 
         object IEnumerator.Current { get { return items[position]; } }
@@ -479,6 +613,10 @@ namespace Algorithm
 
         }
 
+        /// <summary>
+        /// LIST를 foreach 구문을 사용하기 위해 GetEnumerator를 IEnumerable 인터페이스를 상속받아 구현
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<T> GetEnumerator()
         {
             for (int i = 0; i < size; i++)
