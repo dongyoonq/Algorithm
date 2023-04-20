@@ -6,4 +6,4 @@
 
 ②　Linked List　:　[연결리스트 구현](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Array%2CList/MyType/MyList.cs),　[연결리스트 기술면접 정리](https://github.com/dongyoonq/Algorithm/blob/master/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%20%EA%B8%B0%EC%88%A0%EB%A9%B4%EC%A0%91/2.%20%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8(LinkedList)%2C%20%EB%B0%B0%EC%97%B4%EA%B3%BC%20%EC%B0%A8%EC%9D%B4%EC%A0%90.pdf)
 
-③　반복자(Enumerator)　:　[리스트 반복자 구현](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Array%2CList/MyType/MyList.cs),　[연결리스트 반복자 구현](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Array%2CList/MyType/MyLinkedList.cs), [반복자 패턴 기술면접 정리]
+③　반복자(Enumerator)　:　[리스트 반복자 구현](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Array%2CList/MyType/MyList.cs),　[연결리스트 반복자 구현](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Array%2CList/MyType/MyLinkedList.cs),　[반복자 패턴 기술면접 정리](https://github.com/dongyoonq/Algorithm/blob/master/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%20%EA%B8%B0%EC%88%A0%EB%A9%B4%EC%A0%91/3.%20%EB%B0%98%EB%B3%B5%EC%9E%90%20%ED%8C%A8%ED%84%B4(Iterator%20Pattern)%2C%20(%2B%EC%BD%94%EB%A3%A8%ED%8B%B4).pdf)
