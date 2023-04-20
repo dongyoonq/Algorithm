@@ -50,13 +50,17 @@ namespace Algorithm
                 // 가장 높은 차수의 계수와 나머지 모든 항을 제거하고표기
                 // 알고리즘의 대략적인 효율을 파악할 수 있는 수단.
             }
-
             int[] arr = { 5, 4, 6, 8, 3, 2 };
             MyLinkedList<int> list = new MyLinkedList<int>(arr);
 
             IEnumerator<int> enumerator = list.GetEnumerator();
+            
+            foreach (int item in list)
+                Console.Write($"{item} ");
+            
+            Console.WriteLine();
 
-            while(enumerator.MoveNext())
+            while (enumerator.MoveNext())
                 Console.Write($"{enumerator.Current} ");
 
             Console.WriteLine();
@@ -64,13 +68,101 @@ namespace Algorithm
             /////////////////////////////////////////////////////////////////
             int[] arr2 = { 1, 6, 8, 43, 21, 12 };
             MyList<int> list2 = new MyList<int>(arr2);
-            
+
             IEnumerator<int> enumerator1 = list2.GetEnumerator();
 
+            for (int i = 0; i < list2.Count; i++)
+                Console.Write($"{list2[i]} ");
+
+            Console.WriteLine();
+
+            foreach (int item in list2)
+                Console.Write($"{item} ");
+
+            Console.WriteLine();
+            
             while(enumerator1.MoveNext())
                 Console.Write($"{enumerator1.Current} ");
 
             Console.WriteLine();
+            /////////////////////////////////////////////////////////////////////////////////////////////
+            Console.WriteLine();
+
+            MyList<int> newlist = new MyList<int>() { 3, 4, 5, 76, 7, 98 };
+            Sort(newlist, AscendingSort);
+            foreach(int item in newlist)
+                Console.Write($"{item} ");
+
+            Console.WriteLine();
+
+            Sort(newlist, DescendingSort);
+            foreach (int item in newlist)
+                Console.Write($"{item} ");
+
+            Console.WriteLine();
+
+            Sort(arr, AscendingSort);
+            foreach (int item in arr)
+                Console.Write($"{item} ");
+
+            Console.WriteLine();
+
+            Sort(arr, DescendingSort);
+            foreach (int item in arr)
+                Console.Write($"{item} ");
+
+            Console.WriteLine();
+
+            Sort(arr2, AscendingSort);
+            foreach (int item in arr2)
+                Console.Write($"{item} ");
+
+            Console.WriteLine();
+
+            Sort(arr2, DescendingSort);
+            foreach (int item in arr2)
+                Console.Write($"{item} ");
         }
+
+
+        public delegate int Compare<T>(T left, T right);
+
+        public static void Sort<T>(IList<T> list, Compare<T> compare)
+        {
+            for(int i = 0; i < list.Count; i++)
+            {
+                for(int j = 0; j < list.Count; j++)
+                {
+                    if(compare(list[i], list[j]) > 0)
+                    {
+                        T temp = list[i];
+                        list[i] = list[j];
+                        list[j] = temp;
+                    }
+                }
+            }    
+        }
+        
+        public static int AscendingSort<T>(T left, T right) where T : IComparable<T>
+        {
+            if (left.CompareTo(right) > 0)
+                return -1;
+            else if (left.CompareTo(right) < 0)
+                return 1;
+            else
+                return 0;
+        }
+
+        public static int DescendingSort<T>(T left, T right) where T : IComparable<T>
+        {
+            if (left.CompareTo(right) > 0)
+                return 1;
+            else if (left.CompareTo(right) < 0)
+                return -1;
+            else
+                return 0;
+        }
+
+
     }
 }

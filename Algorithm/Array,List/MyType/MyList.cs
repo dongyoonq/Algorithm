@@ -7,8 +7,49 @@ using System.Text;
 
 namespace Algorithm
 {
-    internal class MyList<T> : IEnumerator<T>, IEnumerable<T>
+    internal class MyList<T> : IEnumerable<T>, IEnumerable, IList<T>, ICollection<T>
     {
+        /// <summary>
+        /// IEnumerator 인터페이스를 상속받아 메서드 및 프로퍼티를 구현
+        /// </summary>
+        public struct Enumerator : IEnumerator<T>, IEnumerator
+        {
+            private MyList<T> list;
+            private int position;
+
+            public T Current { get { return list.items[position]; } }
+
+            object IEnumerator.Current { get { return Current; } }
+
+            public Enumerator(MyList<T> list)
+            {
+                this.list = list;
+                position = -1;
+            }
+
+            public bool MoveNext()
+            {
+
+                if (position == (list.size - 1))
+                {
+                    Reset();
+                    return false;
+                }
+
+                return (position++ < list.size - 1);
+            }
+
+            public void Reset()
+            {
+                position = -1;
+            }
+
+            public void Dispose()
+            {
+
+            }
+        }
+
         private const int DefaultCapacity = 0;
 
         private T[] items;
@@ -38,6 +79,8 @@ namespace Algorithm
                 items = newItems;
             }
         }
+
+        public bool IsReadOnly { get; }
 
         /// <summary>
         /// LIST 초기화하는 기본 생성자 및 오버로딩
@@ -166,7 +209,7 @@ namespace Algorithm
         /// </summary>
         /// <param name="item">삭제할 요소</param>
         /// <returns></returns>
-        public bool? Remove(T item)
+        public bool Remove(T item)
         {
             for (int i = 0; i < size; i++)
             {
@@ -388,17 +431,17 @@ namespace Algorithm
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public int IndexOf(int item)
+        public int IndexOf(T item)
         {
             return FindIndex(x => x.Equals(item));
         }
 
-        public int IndexOf(int item, int index)
+        public int IndexOf(T item, int index)
         {
             return FindIndex(index, x => x.Equals(item));
         }
 
-        public int IndexOf(int item, int index, int count)
+        public int IndexOf(T item, int index, int count)
         {
             return FindIndex(index, count, x => x.Equals(item));
         }
@@ -592,34 +635,6 @@ namespace Algorithm
         /// https://nomad-programmer.tistory.com/188
         /// /////////////////////////////////////////////////////////////////////////////////////////
 
-        /// <summary>
-        /// IEnumerator 인터페이스를 상속받아 메서드 및 프로퍼티를 구현
-        /// </summary>
-        public T Current { get { return items[position]; } }
-
-        object IEnumerator.Current { get { return items[position]; } }
-
-        public bool MoveNext()
-        {
-            if(position == (size - 1))
-            {
-                Reset();
-                return false;
-            }
-
-            position++;
-            return (position < size);
-        }
-
-        public void Reset()
-        {
-            position = -1;
-        }
-
-        public void Dispose()
-        {
-
-        }
 
         /// <summary>
         /// LIST를 foreach 구문을 사용하기 위해 GetEnumerator를 IEnumerable 인터페이스를 상속받아 구현
@@ -627,15 +642,19 @@ namespace Algorithm
         /// <returns></returns>
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < size; i++)
-                yield return items[i];
+            return new Enumerator(this);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            for (int i = 0; i < size; i++)
-                yield return items[i];
+            return GetEnumerator();
         }
+
+        bool ICollection<T>.Remove(T item)
+        {
+            return Remove(item) ? true : false;
+        }
+
 
         /*
         public class MyComparer<T> : IComparer<T> where T : IComparable

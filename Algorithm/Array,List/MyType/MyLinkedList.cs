@@ -10,12 +10,53 @@ namespace Algorithm
     /// 양방향 연결 리스트(Linked List)를 나타냅니다.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class MyLinkedList<T> : IEnumerable<T>, IEnumerator<T>, ISerializable, IDeserializationCallback
+    public class MyLinkedList<T> : ICollection<T>, IEnumerable<T>, IEnumerable, ISerializable, IDeserializationCallback
     {
+        public struct Enumerator : IEnumerator<T>, IEnumerator
+        {
+            private MyLinkedList<T> list;
+            private MyLinkedListNode<T> pointer;
+            private T _current;
+
+            public T Current { get { return _current; } }
+
+            object? IEnumerator.Current { get { return _current; } }
+
+            public Enumerator(MyLinkedList<T> list)
+            {
+                this.list = list;
+                _current = default(T);
+                pointer = list.head;
+            }
+
+            public void Dispose()
+            {
+
+            }
+
+            public bool MoveNext()
+            {
+                if (pointer == null)
+                {
+                    Reset();
+                    return false;
+                }
+
+                _current = pointer.Value;
+                pointer = pointer.Next;
+                return true;
+            }
+
+            public void Reset()
+            {
+                pointer = list.head;
+                _current = default(T);
+            }
+
+        }
         // < Property > //
 
         private int count = 0;
-        private object position = -1;
         private MyLinkedListNode<T>? head = null;
         private MyLinkedListNode<T>? tail = null;
         private SerializationInfo siInfo;
@@ -34,6 +75,8 @@ namespace Algorithm
         /// LinkedList<T>에 실제로 포함된 노드의 수를 가져옵니다.
         /// </summary>
         public int Count { get { return count; } }
+
+        public bool IsReadOnly { get; }
 
         // < Constructor > //
 
@@ -497,26 +540,18 @@ namespace Algorithm
 
         // < Interface Overriding > //
 
-        public T Current => head.Value;
-
-        object IEnumerator.Current => head.Value;
-
         /// <summary>
         /// LinkedList<T>를 반복하는 열거자를 반환합니다.
         /// </summary>
         /// <returns></returns>
         public IEnumerator<T> GetEnumerator()
         {
-            MyLinkedListNode<T> pointer = head;
-            while(pointer != null)
-            { yield return pointer.Value; pointer = pointer.next; }
+            return new Enumerator(this);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            MyLinkedListNode<T> pointer = head;
-            while (pointer != null)
-            { yield return pointer.Value; pointer = pointer.next; }
+            return GetEnumerator();
         }
 
         /// <summary>
@@ -546,22 +581,9 @@ namespace Algorithm
             this.siInfo = null;
         }
 
-        public bool MoveNext()
+        public void Add(T item)
         {
-            if ((int)position >= this.count)
-                return false;
-            head = head.Next;
-            return true;
-        }
-
-        public void Reset()
-        {
-            position = -1;
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
+            AddFirst(item);
         }
     }
 
