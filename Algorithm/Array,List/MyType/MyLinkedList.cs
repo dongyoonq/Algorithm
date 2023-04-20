@@ -10,11 +10,12 @@ namespace Algorithm
     /// 양방향 연결 리스트(Linked List)를 나타냅니다.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class MyLinkedList<T> : IEnumerable<T>, ISerializable, IDeserializationCallback
+    public class MyLinkedList<T> : IEnumerable<T>, IEnumerator<T>, ISerializable, IDeserializationCallback
     {
         // < Property > //
 
         private int count = 0;
+        private object position = -1;
         private MyLinkedListNode<T>? head = null;
         private MyLinkedListNode<T>? tail = null;
         private SerializationInfo siInfo;
@@ -496,6 +497,10 @@ namespace Algorithm
 
         // < Interface Overriding > //
 
+        public T Current => head.Value;
+
+        object IEnumerator.Current => head.Value;
+
         /// <summary>
         /// LinkedList<T>를 반복하는 열거자를 반환합니다.
         /// </summary>
@@ -540,7 +545,24 @@ namespace Algorithm
         {
             this.siInfo = null;
         }
-    
+
+        public bool MoveNext()
+        {
+            if ((int)position >= this.count)
+                return false;
+            head = head.Next;
+            return true;
+        }
+
+        public void Reset()
+        {
+            position = -1;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     /// <summary>

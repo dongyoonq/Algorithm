@@ -51,8 +51,26 @@ namespace Algorithm
                 // 알고리즘의 대략적인 효율을 파악할 수 있는 수단.
             }
 
-            MyLinkedList<int> myLinkedList = new MyLinkedList<int>();
-            LinkedList<int> list = new LinkedList<int>();
+            int[] arr = { 5, 4, 6, 8, 3, 2 };
+            MyLinkedList<int> list = new MyLinkedList<int>(arr);
+
+            IEnumerator<int> enumerator = list.GetEnumerator();
+
+            while(enumerator.MoveNext())
+                Console.Write($"{enumerator.Current} ");
+
+            Console.WriteLine();
+
+            /////////////////////////////////////////////////////////////////
+            int[] arr2 = { 1, 6, 8, 43, 21, 12 };
+            MyList<int> list2 = new MyList<int>(arr2);
+            
+            IEnumerator<int> enumerator1 = list2.GetEnumerator();
+
+            while(enumerator1.MoveNext())
+                Console.Write($"{enumerator1.Current} ");
+
+            Console.WriteLine();
         }
     }
 }
