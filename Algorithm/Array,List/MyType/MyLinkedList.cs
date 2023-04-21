@@ -12,8 +12,14 @@ namespace Algorithm
     /// <typeparam name="T"></typeparam>
     public class MyLinkedList<T> : ICollection<T>, IEnumerable<T>, IEnumerable, ISerializable, IDeserializationCallback
     {
+        // Enumerator Structure //
+
+        /// <summary>
+        /// IEnumerator 인터페이스를 상속받아 메서드 및 프로퍼티를 구현
+        /// </summary>
         public struct Enumerator : IEnumerator<T>, IEnumerator
         {
+            // Pointer 노드가 Head 부터 이동하며 MyLinkedList가 가진 노드를 하나씩 가져온다.
             private MyLinkedList<T> list;
             private MyLinkedListNode<T> pointer;
             private T _current;
@@ -22,6 +28,7 @@ namespace Algorithm
 
             object? IEnumerator.Current { get { return _current; } }
 
+            // MyLinkedList 자신을 Enumerator가 알게해야 한다.
             public Enumerator(MyLinkedList<T> list)
             {
                 this.list = list;
@@ -34,6 +41,7 @@ namespace Algorithm
 
             }
 
+            // 현재 노드의 값을 반환하며 Pointer를 다음 노드로 옮긴다.
             public bool MoveNext()
             {
                 if (pointer == null)
@@ -47,6 +55,7 @@ namespace Algorithm
                 return true;
             }
 
+            // Pointer를 기존의 헤드로 돌리고 Current를 초기화 시킨다.
             public void Reset()
             {
                 pointer = list.head;
@@ -54,6 +63,7 @@ namespace Algorithm
             }
 
         }
+
         // < Property > //
 
         private int count = 0;
@@ -76,6 +86,9 @@ namespace Algorithm
         /// </summary>
         public int Count { get { return count; } }
 
+        /// <summary>
+        /// Class를 읽기전용으로 만들어 진것인지 확인하는 프로퍼티, ICollection 인터페이스 일부
+        /// </summary>
         public bool IsReadOnly { get; }
 
         // < Constructor > //
@@ -581,6 +594,10 @@ namespace Algorithm
             this.siInfo = null;
         }
 
+        /// <summary>
+        /// ICollection 인터페이스를 구현(AddFirst 메서드와 동일)
+        /// </summary>
+        /// <param name="item"></param>
         public void Add(T item)
         {
             AddFirst(item);

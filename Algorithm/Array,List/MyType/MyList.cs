@@ -9,6 +9,8 @@ namespace Algorithm
 {
     internal class MyList<T> : IEnumerable<T>, IEnumerable, IList<T>, ICollection<T>
     {
+        // Enumerator Structure //
+
         /// <summary>
         /// IEnumerator 인터페이스를 상속받아 메서드 및 프로퍼티를 구현
         /// </summary>
@@ -21,24 +23,26 @@ namespace Algorithm
 
             object IEnumerator.Current { get { return Current; } }
 
+            // MyList 자신을 Enumerator가 알게해야 한다.
             public Enumerator(MyList<T> list)
             {
                 this.list = list;
                 position = -1;
             }
 
+            // 다음 인덱스로 옮겨준다.
             public bool MoveNext()
             {
-
                 if (position == (list.size - 1))
                 {
                     Reset();
                     return false;
                 }
 
-                return (position++ < list.size - 1);
+                return (position++ <= list.size - 1);
             }
 
+            // 인덱스를 초기화 시켜준다.
             public void Reset()
             {
                 position = -1;
@@ -50,11 +54,12 @@ namespace Algorithm
             }
         }
 
+        // Property //
+
         private const int DefaultCapacity = 0;
 
         private T[] items;
         private int size;
-        private int position = -1;
 
         /// <summary>
         /// LIST 요소의 개수
@@ -80,7 +85,33 @@ namespace Algorithm
             }
         }
 
+        /// <summary>
+        /// 인덱스로 LIST를 접근할 수 있게 하는 인덱스 프로퍼티
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public T this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= size)
+                    throw new IndexOutOfRangeException();
+                return items[index];
+            }
+            set
+            {
+                if (index < 0 || index >= size)
+                    throw new IndexOutOfRangeException();
+                items[index] = value;
+            }
+        }
+
+        /// <summary>
+        /// Class를 읽기전용으로 만들어 진것인지 확인하는 프로퍼티, ICollection 인터페이스 일부
+        /// </summary>
         public bool IsReadOnly { get; }
+
+        // Constructor //
 
         /// <summary>
         /// LIST 초기화하는 기본 생성자 및 오버로딩
@@ -104,24 +135,7 @@ namespace Algorithm
             AddRange(collections);
         }
 
-        /// <summary>
-        /// 인덱스로 LIST를 접근할 수 있게 하는 인덱스 프로퍼티
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public T this[int index]
-        {
-            get {
-                if (index < 0 || index >= size)
-                    throw new IndexOutOfRangeException();
-                return items[index]; 
-            }
-            set {
-                if (index < 0 || index >= size)
-                    throw new IndexOutOfRangeException();
-                items[index] = value; 
-            }
-        }
+        // Method //
 
         /// <summary>
         /// LIST의 마지막 요소 다음 인덱스에 데이터를 삽입하는 메서드
@@ -630,11 +644,7 @@ namespace Algorithm
 
         public T[] ToArray() { return items; }
 
-        /// ////////////////////////////////////////////////////////////////////////////////////////
-        /// Enumerator Interface 구현
-        /// https://nomad-programmer.tistory.com/188
-        /// /////////////////////////////////////////////////////////////////////////////////////////
-
+        // < Interface Overriding > //
 
         /// <summary>
         /// LIST를 foreach 구문을 사용하기 위해 GetEnumerator를 IEnumerable 인터페이스를 상속받아 구현
@@ -650,11 +660,14 @@ namespace Algorithm
             return GetEnumerator();
         }
 
+        /// <summary>
+        /// ICollection 인터페이스를 구현(Add, Remove 메서드와 동일)
+        /// </summary>
+        /// <param name="item"></param>
         bool ICollection<T>.Remove(T item)
         {
             return Remove(item) ? true : false;
         }
-
 
         /*
         public class MyComparer<T> : IComparer<T> where T : IComparable
