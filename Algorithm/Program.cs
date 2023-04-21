@@ -55,6 +55,9 @@ namespace Algorithm
             bracketCheck.Start();
 
             Console.WriteLine();
+
+            StackCalculator calculator = new StackCalculator();
+            calculator.Start();
         }
     }
 }
