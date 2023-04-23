@@ -51,10 +51,8 @@ namespace Algorithm
                 // 알고리즘의 대략적인 효율을 파악할 수 있는 수단.
             }
 
-            playerQueue playerQueue = new playerQueue();
-            playerQueue.Init();
-            playerQueue.Sort();
-            playerQueue.Render();
+            JosephusPermutation josephus = new JosephusPermutation();
+            josephus.Start();
         }
     }
 }
