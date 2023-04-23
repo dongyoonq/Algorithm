@@ -10,4 +10,4 @@
 
 ④　스택(Stack), 큐(Queue)　:　[스택(어댑터) 구현](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Stack%2C%20Queue/MyType/AdapterStack.cs),　[큐(순환배열) 구현](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Stack%2C%20Queue/MyType/MyQueue.cs),　[스택 괄호검사기](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Stack%2C%20Queue/Homework/BracketCheck.cs),　[스택 계산기](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Stack%2C%20Queue/Homework/StackCalculator.cs)
 
-[큐 플레이어 속도](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Stack%2C%20Queue/Homework/PlayerQueue/playerQueue.cs),　[큐 요세푸스 순열](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Stack%2C%20Queue/Homework/JosephusPermutation.cs)
+　　　　　　　　　　　　　　 [큐 플레이어 속도](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Stack%2C%20Queue/Homework/PlayerQueue/playerQueue.cs),　[큐 요세푸스 순열](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Stack%2C%20Queue/Homework/JosephusPermutation.cs)
