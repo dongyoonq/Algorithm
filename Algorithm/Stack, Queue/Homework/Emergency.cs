@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Algorithm
 {
     internal class Emergency
     {
         private string patient;
+        private int patientCount;
         private int goldenTime;
-        private PriorityQueue<string, int> priorityQueue = new PriorityQueue<string, int>();
+        private MyPriorityQueue<string, int> priorityQueue = new MyPriorityQueue<string, int>();
 
         public void Start()
         {
-            for(int i = 0; i < 5; i++)
+            Console.Write("치료할 환자 수를 입력하세요 : ");
+            patientCount = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < patientCount; i++)
             {
                 Input();
             }
@@ -34,7 +36,8 @@ namespace Algorithm
 
         private void Cure()
         {
-            while(priorityQueue.Count > 0)
+            Console.WriteLine();
+            while (priorityQueue.Count > 0)
             {
                 Console.WriteLine($"{priorityQueue.Dequeue()}환자가 치료되었다.");
             }

@@ -582,12 +582,12 @@ namespace Algorithm
             Array.Sort(items, comparison);
         }
 
-        public void Sort(IComparer<T>? comparer)
+        public void Sort(IComparer<T> comparer)
         {
             Array.Sort(items, comparer);
         }
 
-        public void Sort(int index, int count, IComparer<T>? comparer)
+        public void Sort(int index, int count, IComparer<T> comparer)
         {
             Array.Sort(items, index, count, comparer);
         }

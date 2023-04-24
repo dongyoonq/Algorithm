@@ -59,7 +59,7 @@ namespace Algorithm
             this.comparer = Comparer<TPriority>.Default;
         }
 
-        public MyPriorityQueue(IComparer<TPriority>? comparer)
+        public MyPriorityQueue(IComparer<TPriority> comparer)
         {
             this.nodes = new List<KeyValuePair<TElement, TPriority>>();
             this.comparer = comparer;
@@ -70,13 +70,13 @@ namespace Algorithm
             EnqueueRange(items);
         }
 
-        public MyPriorityQueue(int initialCapacity, IComparer<TPriority>? comparer)
+        public MyPriorityQueue(int initialCapacity, IComparer<TPriority> comparer)
         {
             this.nodes = new List<KeyValuePair<TElement, TPriority>>(initialCapacity);
             this.comparer = comparer;
         }
 
-        public MyPriorityQueue(IEnumerable<(TElement Elemnet, TPriority Priority)> items, IComparer<TPriority>? comparer)
+        public MyPriorityQueue(IEnumerable<(TElement Elemnet, TPriority Priority)> items, IComparer<TPriority> comparer)
         {
             EnqueueRange(items);
             this.comparer = comparer;
@@ -120,12 +120,18 @@ namespace Algorithm
 
         public TElement Dequeue()
         {
+            if (nodes.Count == 0)
+                throw new InvalidOperationException();
+
             TElement element = nodes[0].Key;
-            KeyValuePair<TElement, TPriority> lastNode = nodes[nodes.Count - 1];
+
+            // 0 번째 노드를 마지막 노드로 변경
+            nodes[0] = nodes[nodes.Count - 1];
             nodes.RemoveAt(nodes.Count - 1);
 
             int searchIndex = 0;
-            while (searchIndex < nodes.Count)
+
+            while (searchIndex < nodes.Count - 1)
             {
                 // case 3
                 int leftChildIndex = GetLeftChildIndex(searchIndex);
@@ -134,40 +140,33 @@ namespace Algorithm
                 // LeftChild & RightChild Exist
                 if (rightChildIndex < nodes.Count)
                 {
-                    int lessChildIndex = comparer.Compare(nodes[leftChildIndex].Value, nodes[rightChildIndex].Value) < 0 ?
-                    leftChildIndex : rightChildIndex;
+                    int lessChildIndex = (comparer.Compare(nodes[leftChildIndex].Value, nodes[rightChildIndex].Value) < 0)
+                        ? leftChildIndex : rightChildIndex;
 
-                    if (comparer.Compare(lastNode.Value, nodes[lessChildIndex].Value) > 0)
+                    if (comparer.Compare(nodes[searchIndex].Value, nodes[lessChildIndex].Value) > 0)
                     {
-                        nodes[searchIndex] = nodes[lessChildIndex];
+                        KeyValuePair<TElement, TPriority> temp = nodes[searchIndex];
+                        nodes[searchIndex] = nodes[lessChildIndex]; nodes[lessChildIndex] = temp;
                         searchIndex = lessChildIndex;
                     }
                     else
-                    {
-                        nodes[searchIndex] = lastNode;
                         break;
-                    }
                 }
                 // LeftChild Exist
                 else if (leftChildIndex < nodes.Count)
                 {
-                    if (comparer.Compare(lastNode.Value, nodes[leftChildIndex].Value) > 0)
+                    if (comparer.Compare(nodes[searchIndex].Value, nodes[leftChildIndex].Value) > 0)
                     {
-                        nodes[searchIndex] = nodes[leftChildIndex];
+                        KeyValuePair<TElement, TPriority> temp = nodes[searchIndex];
+                        nodes[searchIndex] = nodes[leftChildIndex]; nodes[leftChildIndex] = temp;
                         searchIndex = leftChildIndex;
                     }
                     else
-                    {
-                        nodes[searchIndex] = lastNode;
                         break;
-                    }
                 }
                 // Not Exist Child
                 else
-                {
-                    nodes[searchIndex] = lastNode;
                     break;
-                }
             }
 
             return element;
