@@ -50,19 +50,8 @@ namespace Algorithm
                 // 가장 높은 차수의 계수와 나머지 모든 항을 제거하고표기
                 // 알고리즘의 대략적인 효율을 파악할 수 있는 수단.
             }
-            MyPriorityQueue<string, int> queue = new MyPriorityQueue<string, int>();
-
-            queue.Enqueue("데이터1", 1);     // 우선순위와 데이터를 추가
-            queue.Enqueue("데이터2", 3);
-            queue.Enqueue("데이터3", 5);
-            queue.Enqueue("데이터4", 2);
-            queue.Enqueue("데이터5", 4);
-            queue.Enqueue("데이터3", 7);
-            queue.Enqueue("데이터4", 8);
-            queue.Enqueue("데이터5", 9);
-
-            while (queue.Count > 0)
-                Console.WriteLine(queue.Dequeue());
+            Emergency emergency = new Emergency();
+            emergency.Start();
         }
     }
 }
