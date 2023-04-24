@@ -117,57 +117,62 @@ namespace Algorithm
                 Enqueue(item.Elemnet, item.Priority);
         }
 
+
         public TElement Dequeue()
         {
-            if (nodes.Count == 0)
-                throw new InvalidOperationException();
-
             TElement element = nodes[0].Key;
-            int lastIndex = nodes.Count - 1;
-            nodes[0] = nodes[lastIndex];
-            nodes.RemoveAt(lastIndex);
+            KeyValuePair<TElement, TPriority> lastNode = nodes[nodes.Count - 1];
+            nodes.RemoveAt(nodes.Count - 1);
 
-            int searchNode = 0;
-            
-            while(searchNode < nodes.Count - 1)
+            int searchIndex = 0;
+            while (searchIndex < nodes.Count)
             {
                 // case 3
-                int leftChildIndex = GetLeftChildIndex(searchNode);
-                int rightChildIndex = GetRightChildIndex(searchNode);
+                int leftChildIndex = GetLeftChildIndex(searchIndex);
+                int rightChildIndex = GetRightChildIndex(searchIndex);
 
                 // LeftChild & RightChild Exist
                 if (rightChildIndex < nodes.Count)
                 {
-                    int lessChildIndex = (comparer.Compare(nodes[leftChildIndex].Value, nodes[rightChildIndex].Value) < 0) 
-                        ? leftChildIndex : rightChildIndex;
+                    int lessChildIndex = comparer.Compare(nodes[leftChildIndex].Value, nodes[rightChildIndex].Value) < 0 ?
+                    leftChildIndex : rightChildIndex;
 
-                    if(comparer.Compare(nodes[searchNode].Value, nodes[lessChildIndex].Value) > 0)
+                    if (comparer.Compare(lastNode.Value, nodes[lessChildIndex].Value) > 0)
                     {
-                        KeyValuePair<TElement, TPriority> temp = nodes[searchNode];
-                        nodes[searchNode] = nodes[lessChildIndex];
-                        nodes[lessChildIndex] = temp;
-                        searchNode = lessChildIndex;
+                        nodes[searchIndex] = nodes[lessChildIndex];
+                        searchIndex = lessChildIndex;
                     }
-
+                    else
+                    {
+                        nodes[searchIndex] = lastNode;
+                        break;
+                    }
                 }
                 // LeftChild Exist
                 else if (leftChildIndex < nodes.Count)
                 {
-                    if (comparer.Compare(nodes[searchNode].Value, nodes[leftChildIndex].Value) > 0)
+                    if (comparer.Compare(lastNode.Value, nodes[leftChildIndex].Value) > 0)
                     {
-                        KeyValuePair<TElement, TPriority> temp = nodes[searchNode];
-                        nodes[searchNode] = nodes[leftChildIndex];
-                        nodes[leftChildIndex] = temp;
-                        searchNode = leftChildIndex;
+                        nodes[searchIndex] = nodes[leftChildIndex];
+                        searchIndex = leftChildIndex;
+                    }
+                    else
+                    {
+                        nodes[searchIndex] = lastNode;
+                        break;
                     }
                 }
                 // Not Exist Child
                 else
+                {
+                    nodes[searchIndex] = lastNode;
                     break;
+                }
             }
 
             return element;
         }
+
 
         public bool TryDequeue(out TElement element, out TPriority priority)
         {
