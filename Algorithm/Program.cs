@@ -51,10 +51,20 @@ namespace Algorithm
                 // 알고리즘의 대략적인 효율을 파악할 수 있는 수단.
             }
 
-            PriorityQueueStudy queueStudy = new PriorityQueueStudy();
-            queueStudy.PriorityQueue();
+            PriorityQueue<string, int> queue = new PriorityQueue<string, int>();
 
-            Console.WriteLine();
+            queue.Enqueue("데이터1", 1);     // 우선순위와 데이터를 추가
+            queue.Enqueue("데이터2", 3);
+            queue.Enqueue("데이터3", 5);
+            queue.Enqueue("데이터4", 2);
+            queue.Enqueue("데이터5", 4);
+            queue.Enqueue("데이터3", 7);
+            queue.Enqueue("데이터4", 9);
+            queue.Enqueue("데이터5", 8);
+
+
+            while (queue.Count > 0)
+                Console.WriteLine(queue.Dequeue()) ;
         }
     }
 }
