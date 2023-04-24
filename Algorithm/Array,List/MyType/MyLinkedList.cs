@@ -64,7 +64,7 @@ namespace Algorithm
 
         }
 
-        // < Property > //
+        //  Property  //
 
         private int count = 0;
         private MyLinkedListNode<T>? head = null;
@@ -91,7 +91,7 @@ namespace Algorithm
         /// </summary>
         public bool IsReadOnly { get; }
 
-        // < Constructor > //
+        //  Constructor  //
 
         /// <summary>
         /// 비어 있는 LinkedList<T> 클래스의 새 인스턴스를 초기화합니다
@@ -142,7 +142,7 @@ namespace Algorithm
             return node;
         }
 
-        // < Method > //
+        //  Method  //
 
         /// <summary>
         /// LinkedList<T> 의 시작 위치에 지정한 새 노드를 추가합니다.
@@ -551,7 +551,7 @@ namespace Algorithm
             }
         }
 
-        // < Interface Overriding > //
+        //  Interface Overriding  //
 
         /// <summary>
         /// LinkedList<T>를 반복하는 열거자를 반환합니다.
@@ -610,7 +610,7 @@ namespace Algorithm
     /// <typeparam name="T"></typeparam>
     public sealed class MyLinkedListNode<T>
     {
-        // < Property > //
+        //  Property  //
 
         private T value;
         private MyLinkedList<T> list;
@@ -642,7 +642,7 @@ namespace Algorithm
         /// </summary>
         public MyLinkedListNode<T> Next { get { return next; } }
 
-        // < Constructor > //
+        //  Constructor  //
 
         /// <summary>
         /// LinkedListNode<T> 클래스의 새 인스턴스를 디폴트로 초기화합니다.

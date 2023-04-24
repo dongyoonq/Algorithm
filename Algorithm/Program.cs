@@ -53,6 +53,8 @@ namespace Algorithm
 
             PriorityQueueStudy queueStudy = new PriorityQueueStudy();
             queueStudy.PriorityQueue();
+
+            Console.WriteLine();
         }
     }
 }
