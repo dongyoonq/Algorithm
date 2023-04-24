@@ -2,7 +2,17 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Stack, Queue\Study\okvlrtcj.cli~" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetty.Common" Version="0.7.5" />
+    <PackageReference Include="Lucene.Net" Version="3.0.3" />
+    <PackageReference Include="NetTopologySuite" Version="2.5.0" />
+  </ItemGroup>
 
 </Project>
