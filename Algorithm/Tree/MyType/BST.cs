@@ -152,17 +152,17 @@ namespace Algorithm
 			}
 		}
 
-		/// <summary>
-		/// 요소의 값을 가진 노드를 찾아준다.
-		/// 1. 루트노드가 없으면 null 을 반환하고
-		/// 2. 현재노드를 루트부터 탐색 시작.
-		/// 3. 현재노드가 끝에 도착할때까지
-		/// 4. 들어온 요소가 현재노드 요소보다 작으면 왼쪽, 크면 오른쪽 계속 탐색
-		/// 5. 요소와 같은 값을 가진 노드를 찾으면 노드를 반환하고 아니면 null을 반환한다.
-		/// </summary>
-		/// <param name="item"></param>
-		/// <returns></returns>
-		private Node FindNode(T item)
+        /// <summary>
+        /// 요소의 값을 가진 노드를 찾아준다.
+        /// 1. 루트노드가 없으면 null 을 반환하고
+        /// 2. 현재노드를 루트부터 탐색 시작.
+        /// 3. 현재노드가 끝에 도착할때까지
+        /// 4. 들어온 요소가 현재노드 요소보다 작으면 왼쪽, 크면 오른쪽 계속 탐색
+        /// 5. 요소와 같은 값을 가진 노드를 찾으면 노드를 반환하고 아니면 null을 반환한다.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private Node FindNode(T item)
 		{
 			if (root == null)
 				return null;
@@ -247,10 +247,63 @@ namespace Algorithm
 		}
 
 		/// <summary>
-		/// 요소와 부모 노드, 왼쪽, 오른쪽 자식 노드를 가지는 노드 클래스이다.
-		/// 일종의 그래프형식의 자료를 만들기 위해 사용한다.
+		/// 전,중,후위 순회를시켜 줄력하는 메서드이다.
 		/// </summary>
-		private class Node
+		public void PrintTraversal()
+		{
+			Console.Write("Preorder Traversal : ");
+			PreorderTraversal(root);
+            Console.WriteLine();
+			Console.Write("Inorder Traversal : ");
+            InorderTraversal(root);
+            Console.WriteLine();
+            Console.Write("Postorder Traversal : ");
+            PostorderTraversal(root);
+            Console.WriteLine();
+
+        }
+
+		/// <summary>
+		/// 전위 순회 메서드 루트노드부터, 부모 -> 왼쪽 자식 -> 오른쪽 자식 순으로 탐색한다.
+		/// </summary>
+		/// <param name="root"></param>
+		private void PreorderTraversal(Node root)
+		{
+			if(root == null) return;
+            Console.Write($"{root.Item} ");
+			PreorderTraversal(root.Left);
+			PreorderTraversal(root.Right);
+        }
+
+        /// <summary>
+        /// 중위 순회 메서드 루트노드부터, 왼쪽 자식 -> 부모 -> 오른쪽 자식 순으로 탐색한다.
+        /// </summary>
+        /// <param name="root"></param>
+        private void InorderTraversal(Node root)
+        {
+            if (root == null) return;
+            InorderTraversal(root.Left);
+            Console.Write($"{root.Item} ");
+            InorderTraversal(root.Right);
+        }
+
+        /// <summary>
+        /// 후위 순회 메서드 루트노드부터, 왼쪽 자식 -> 오른쪽 자식 -> 부모 순으로 탐색한다.
+        /// </summary>
+        /// <param name="root"></param>
+        private void PostorderTraversal(Node root)
+        {
+            if (root == null) return;
+            PostorderTraversal(root.Left);
+            PostorderTraversal(root.Right);
+            Console.Write($"{root.Item} ");
+        }
+
+        /// <summary>
+        /// 요소와 부모 노드, 왼쪽, 오른쪽 자식 노드를 가지는 노드 클래스이다.
+        /// 일종의 그래프형식의 자료를 만들기 위해 사용한다.
+        /// </summary>
+        private class Node
 		{
 			private T item;
 			private Node parent;

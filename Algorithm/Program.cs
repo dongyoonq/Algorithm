@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Xml.Linq;
+using System.Runtime.Intrinsics.X86;
 
 namespace Algorithm
 {
@@ -50,11 +51,26 @@ namespace Algorithm
                 // 알고리즘의 복잡도를 나타내는 점근 표기법
                 // 가장 높은 차수의 계수와 나머지 모든 항을 제거하고표기
                 // 알고리즘의 대략적인 효율을 파악할 수 있는 수단.
-
-                DFS dFS = new DFS();
-                dFS.Start();
             }
 
+            /*
+            DFS dFS = new DFS();
+            dFS.Start();*/
+
+            BST<int> bST = new BST<int>();
+            bST.Add(8);
+            bST.Add(6);
+            bST.Add(2);
+            bST.Add(12);
+            bST.Add(17);
+            bST.Add(7);
+            bST.Add(10);
+            bST.Add(9);
+
+            // PreOrder     : 8 - 6 - 2 - 7 - 12 - 10 - 9 - 17
+            // InOrder      : 2 - 6 - 7 - 8 - 9 - 10 - 12 - 17
+            // PostOrder    : 2 - 7 - 6 - 9 - 10 - 17 - 12 - 8
+            bST.PrintTraversal();
         }
     }
 }
