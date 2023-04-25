@@ -51,12 +51,7 @@ namespace Algorithm
                 // 가장 높은 차수의 계수와 나머지 모든 항을 제거하고표기
                 // 알고리즘의 대략적인 효율을 파악할 수 있는 수단.
             }
-            FindMiddleNumber findMiddleNumber = new FindMiddleNumber();
-            findMiddleNumber.Start();
-            FindMiddleNumber findMiddleNumber2 = new FindMiddleNumber();
-            findMiddleNumber2.TestCase1();
-            FindMiddleNumber findMiddleNumber3 = new FindMiddleNumber();
-            findMiddleNumber3.TestCase2();
+
         }
     }
 }
