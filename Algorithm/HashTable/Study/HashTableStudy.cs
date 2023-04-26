@@ -45,7 +45,6 @@ namespace Algorithm
 		void Dictionary()
 		{
 			Dictionary<string, string> dictionary = new Dictionary<string, string>();
-
 			dictionary.Add("txt", "텍스트 파일");
 			dictionary.Add("bmp", "이미지 파일");
 			dictionary.Add("mp3", "오디오 파일");

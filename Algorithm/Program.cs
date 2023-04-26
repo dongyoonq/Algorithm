@@ -59,8 +59,11 @@ namespace Algorithm
             
             MyDictionary<string, int> map = new MyDictionary<string,int>();
             map.Add("김동윤", 12);
-            Console.WriteLine(map["김동윤"]);
+            map.TryAdd("김동윤", 14);
             map["김동윤"] = 32;
+            Console.WriteLine(map["김동윤"]);
+            map.Remove("김동윤");
+            //Console.WriteLine(map["김동윤"]);
         }
     }
 }
