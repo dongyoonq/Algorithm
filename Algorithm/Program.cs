@@ -56,21 +56,11 @@ namespace Algorithm
             /*
             DFS dFS = new DFS();
             dFS.Start();*/
-
-            BST<int> bST = new BST<int>();
-            bST.Add(8);
-            bST.Add(6);
-            bST.Add(2);
-            bST.Add(12);
-            bST.Add(17);
-            bST.Add(7);
-            bST.Add(10);
-            bST.Add(9);
-
-            // PreOrder     : 8 - 6 - 2 - 7 - 12 - 10 - 9 - 17
-            // InOrder      : 2 - 6 - 7 - 8 - 9 - 10 - 12 - 17
-            // PostOrder    : 2 - 7 - 6 - 9 - 10 - 17 - 12 - 8
-            bST.PrintTraversal();
+            
+            MyDictionary<string, int> map = new MyDictionary<string,int>();
+            map.Add("김동윤", 12);
+            Console.WriteLine(map["김동윤"]);
+            map["김동윤"] = 32;
         }
     }
 }
