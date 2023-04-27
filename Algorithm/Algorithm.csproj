@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Stack, Queue\Study\okvlrtcj.cli~" />
+    <None Remove="DataStructure\Stack, Queue\Study\okvlrtcj.cli~" />
   </ItemGroup>
 
   <ItemGroup>

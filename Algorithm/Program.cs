@@ -53,17 +53,8 @@ namespace Algorithm
                 // 알고리즘의 대략적인 효율을 파악할 수 있는 수단.
             }
 
-            /*
-            DFS dFS = new DFS();
-            dFS.Start();*/
-            
-            MyDictionary<string, int> map = new MyDictionary<string,int>();
-            map.Add("김동윤", 12);
-            map.TryAdd("김동윤", 14);
-            map["김동윤"] = 32;
-            Console.WriteLine(map["김동윤"]);
-            map.Remove("김동윤");
-            //Console.WriteLine(map["김동윤"]);
+            Hanoi hanoi = new Hanoi();
+            hanoi.Start();
         }
     }
 }
