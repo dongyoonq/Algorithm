@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Algorithm
 {
+
     public class Hanoi
     {
+        private StringBuilder sb = new StringBuilder();
         private Stack<int>[] stack = new Stack<int>[3];
         private int input;
-        public int cnt = 0;
-        public enum Position { Left , Middle, Right }
+        private int cnt = 0;
+        private enum Position { Left, Middle, Right }
 
         public void Start()
         {
@@ -26,15 +28,17 @@ namespace Algorithm
             }
 
             Solve(input, Position.Left, Position.Right);
+            Console.WriteLine(cnt);
+            Console.WriteLine(sb.ToString());
         }
 
-        public void Solve(int count, Position start, Position end)
+        private void Solve(int count, Position start, Position end)
         {
             if (count == 1)
             {
                 int tmp = stack[(int)start].Pop();
                 stack[(int)end].Push(tmp);
-                Console.WriteLine($"{(int)start + 1} {(int)end + 1}");
+                sb.Append($"{(int)start + 1} {(int)end + 1}\n");
                 cnt++;
                 return;
             }
