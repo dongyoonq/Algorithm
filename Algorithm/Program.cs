@@ -50,6 +50,12 @@ namespace Algorithm
                 // 알고리즘의 대략적인 효율을 파악할 수 있는 수단.
             }
 
+            Console.WriteLine("DFS Start");
+            DFS dFS = new DFS();
+            dFS.Start();
+            Console.WriteLine("BFS Start");
+            BFS bFS = new BFS();
+            bFS.Start();
         }
     }
 }
