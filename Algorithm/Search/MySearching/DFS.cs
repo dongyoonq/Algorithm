@@ -11,12 +11,42 @@ namespace Algorithm
         List<List<int>> graph = new List<List<int>>();
         bool[] visited = new bool[9];
 
+        bool[,] matrixGraph1 = new bool[9, 9]
+        {
+            { false, true, true, true, false, false, false, false, false },
+            { true, false, false, false, true, false, false, false, false  },
+            { true, false, false, false, false, true, true, false, false },
+            { true, false, false, false, false, false, false, false, false },
+            { false, true, false, false, false, false, false, true, true },
+            { false, false, true, false, false, false, false, false, false },
+            { false, false, true, false, false, false, false, false, false },
+            { false, false, false, false, true, false, false, false, false },
+            { false, false, false, false, true, false, false, false, false },
+        };
+
+        const int INF = int.MaxValue;
+
+
+        int[,] matrixGraph2 = new int[9, 9]
+        {
+            {  0, 1, 1, 1, INF, INF, INF, INF, INF },
+            {  1, 0, INF, INF, 1, INF, INF, INF, INF },
+            {  1, INF, 0, INF, INF, 1, 1, INF, INF },
+            {  1, INF, INF, 0, INF, INF, INF, INF, INF },
+            {  INF, 1, INF, INF, 0, INF, INF, 1, 1 },
+            {  INF, INF, 1, INF, INF, 0, INF, INF, INF },
+            {  INF, INF, 1, INF, INF, INF, 0, INF, INF },
+            {  INF, INF, INF, INF, 1, INF, INF, 0, INF },
+            {  INF, INF, INF, INF, 1, INF, INF, INF, 0 },
+        };
+
         public void Start()
         {
             Console.Write("찾을라는 요소를 입력해주세요 : ");
             int input = int.Parse(Console.ReadLine());
             Init();
-            Search(0, input);
+            //ListSearch(0, input);
+            MatrixSearch(0, input);
         }
 
         private void Init()
@@ -40,7 +70,7 @@ namespace Algorithm
             graph[8].Add(4);
         }
 
-        private void Search(int num, int element)
+        private void ListSearch(int num, int element)
         {
             Console.WriteLine($"현재 탐색 요소 {num + 1}");
 
@@ -51,13 +81,34 @@ namespace Algorithm
             }
 
             visited[num] = true;
-            graph[num].Sort();
+
             for(int i = 0; i < graph[num].Count; i++)
             {
                 int v = graph[num][i];
 
                 if (!visited[v])
-                    Search(v, element);
+                    ListSearch(v, element);
+            }
+        }
+
+        private void MatrixSearch(int num, int element)
+        {
+            Console.WriteLine($"현재 탐색 요소 {num + 1}");
+
+            if (num + 1 == element)
+            {
+                Console.WriteLine($"찾으실려는 요소 {element}를 찾았습니다.");
+                return;
+            }
+
+            visited[num] = true;
+
+            for (int i = 0; i < graph[num].Count; i++)
+            {
+                int v = graph[num][i];
+
+                if (matrixGraph1[num, v] && !visited[v])
+                    MatrixSearch(v, element);
             }
         }
 

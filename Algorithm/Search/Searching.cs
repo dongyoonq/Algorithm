@@ -52,7 +52,7 @@ namespace Algorithm
             return -1;
         }
 
-        // <깊이 우선 탐색 (Depth-First Search)>
+        // <깊이 우선 탐색 (Depth-First ListSearch)>
         // 그래프의 분기를 만났을 때 최대한 깊이 내려간 뒤,
         // 더이상 깊이 갈 곳이 없을 경우 다음 분기를 탐색
         public static void DFS(in bool[,] graph, int start, out bool[] visited, out int[] parents)
@@ -83,7 +83,7 @@ namespace Algorithm
             }
         }
 
-        // <너비 우선 탐색 (Breadth-First Search)>
+        // <너비 우선 탐색 (Breadth-First ListSearch)>
         // 그래프의 분기를 만났을 때 모든 분기를 저장한 뒤,
         // 저장한 분기를 하나씩 탐색
         public static void BFS(in bool[,] graph, int start, out bool[] visited, out int[] parents)
