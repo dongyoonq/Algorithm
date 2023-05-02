@@ -22,7 +22,6 @@ namespace Algorithm.Array_List
             list.Add(4);
 
             Console.WriteLine(list.FindIndex(x => x == 2));
-
         }
     }
 }

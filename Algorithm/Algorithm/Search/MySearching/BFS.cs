@@ -9,6 +9,8 @@ namespace Algorithm
     internal class BFS
     {
         List<List<int>> graph = new List<List<int>>();
+
+        int[] parent = new int[9];
         bool[] visited = new bool[9];
 
         bool[,] matrixGraph1 = new bool[9, 9]
@@ -26,7 +28,7 @@ namespace Algorithm
 
         const int INF = int.MaxValue;
 
-        
+
         int[,] matrixGraph2 = new int[9, 9]
         {
             {  0, 1, 1, 1, INF, INF, INF, INF, INF },
@@ -45,13 +47,21 @@ namespace Algorithm
         {
             Console.Write("찾을라는 요소를 입력해주세요 : ");
             int input = int.Parse(Console.ReadLine());
-            ListInit();
+            //ListInit();
+            ArrayInit();
             //ListSearch(0, input);
             MatrixSearch(0, input);
         }
 
+        private void ArrayInit()
+        {
+            for (int i = 1; i <= 9; i++)
+                parent[i - 1] = i;
+        }
+
         private void ListInit()
         {
+
             for (int i = 0; i < 9; i++)
                 graph.Add(new List<int>());
 
@@ -77,7 +87,7 @@ namespace Algorithm
             queue.Enqueue(num);
             visited[num] = true;
 
-            while(queue.Count > 0)
+            while (queue.Count > 0)
             {
                 int p = queue.Dequeue();
 
@@ -94,7 +104,7 @@ namespace Algorithm
                 for (int i = 0; i < graph[p].Count; i++)
                 {
                     int v = graph[p][i];
-                    if(!visited[v])
+                    if (!visited[v])
                     {
                         visited[v] = true;
                         queue.Enqueue(v);
@@ -123,13 +133,13 @@ namespace Algorithm
                 else
                     Console.WriteLine($"찾으실려는 요소를 찾지 못했습니다. 계속탐색합니다..");
 
-                for (int i = 0; i < graph[p].Count; i++)
+                for (int i = 0; i < parent.Length; i++)
                 {
-                    int v = graph[p][i];
-                    if (matrixGraph1[p, v] && !visited[v])
+                    int v = parent[i];
+                    if (matrixGraph1[p, v - 1] && !visited[v - 1])
                     {
-                        visited[v] = true;
-                        queue.Enqueue(v);
+                        visited[v - 1] = true;
+                        queue.Enqueue(v - 1);
                     }
                 }
             }
