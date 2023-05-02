@@ -26,7 +26,6 @@ namespace Algorithm
 
         const int INF = int.MaxValue;
 
-
         int[,] matrixGraph2 = new int[9, 9]
         {
             {  0, 1, 1, 1, INF, INF, INF, INF, INF },
