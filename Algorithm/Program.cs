@@ -57,6 +57,9 @@ namespace Algorithm
             BFS bFS = new BFS();
             bFS.Start();
 
+            DFS dFS = new DFS();
+            dFS.Start();
+
             Dijkstra dijkstra = new Dijkstra();
             dijkstra.Start();
         }
