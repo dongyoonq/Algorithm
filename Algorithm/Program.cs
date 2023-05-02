@@ -49,13 +49,16 @@ namespace Algorithm
                 // 가장 높은 차수의 계수와 나머지 모든 항을 제거하고표기
                 // 알고리즘의 대략적인 효율을 파악할 수 있는 수단.
             }
-
-            Console.WriteLine("DFS Start");
+            
+            /*
             DFS dFS = new DFS();
-            dFS.Start();
-            Console.WriteLine("BFS Start");
+            dFS.Start();*/
+
             BFS bFS = new BFS();
             bFS.Start();
+
+            Dijkstra dijkstra = new Dijkstra();
+            dijkstra.Start();
         }
     }
 }
