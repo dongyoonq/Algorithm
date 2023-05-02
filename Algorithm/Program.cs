@@ -50,6 +50,13 @@ namespace Algorithm
                 // 알고리즘의 대략적인 효율을 파악할 수 있는 수단.
             }
             
+            /*
+            DFS dFS = new DFS();
+            dFS.Start();*/
+
+            BFS bFS = new BFS();
+            bFS.Start();
+
             Dijkstra dijkstra = new Dijkstra();
             dijkstra.Start();
         }

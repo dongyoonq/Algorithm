@@ -47,10 +47,10 @@ namespace Algorithm
         {
             Console.Write("찾을라는 요소를 입력해주세요 : ");
             int input = int.Parse(Console.ReadLine());
-            //ListInit();
-            ArrayInit();
+            ListInit();
+            //ArrayInit();
             //ListSearch(0, input);
-            MatrixSearch(0, input);
+            ListSearch(0, input);
         }
 
         private void ArrayInit()
@@ -104,7 +104,7 @@ namespace Algorithm
                 for (int i = 0; i < graph[p].Count; i++)
                 {
                     int v = graph[p][i];
-                    if (!visited[v])
+                    if (matrixGraph1[p, v] && !visited[v])
                     {
                         visited[v] = true;
                         queue.Enqueue(v);
