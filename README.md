@@ -22,4 +22,4 @@
 
 ⑨　최단경로 - Dijkstra　:　[그래프, Dijkstra 결과](https://github.com/dongyoonq/Algorithm/tree/master/SubFile/Dijkstra%20%EA%B2%B0%EA%B3%BC),　[Dijkstra 구현](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Algorithm/Search/ShortestPathAlgorithm/Dijkstra.cs)
 
-⑩　최단경로 - Astar　:　[타일, Astra 결과](https://github.com/dongyoonq/Algorithm/tree/master/SubFile/Astar%20%EA%B2%B0%EA%B3%BC),　[Astar 구현](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Algorithm/Search/ShortestPathAlgorithm/AStar.cs)
+⑩　최단경로 - Astar　:　[타일, Astra 결과](https://github.com/dongyoonq/Algorithm/tree/master/SubFile/Astar%20%EA%B2%B0%EA%B3%BC),　[Astar 구현](https://github.com/dongyoonq/Algorithm/blob/master/Algorithm/Algorithm/ShortestPathAlgorithm/AStar.cs)
