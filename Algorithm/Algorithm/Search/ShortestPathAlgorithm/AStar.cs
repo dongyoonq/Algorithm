@@ -149,10 +149,10 @@ namespace Algorithm
             int ySize = Math.Abs(start.y - end.y);  // 세로로 가야하는 횟수
 
             // 맨해튼 거리 : 가로 세로를 통해 이동하는 거리
-             return CostStraight * (xSize + ySize);
+            // return CostStraight * (xSize + ySize);
 
             // 유클리드 거리 : 대각선을 통해 이동하는 거리
-            //return CostStraight * (int)Math.Sqrt(xSize * xSize + ySize * ySize);
+            return CostStraight * (int)Math.Sqrt(xSize * xSize + ySize * ySize);
         }
     }
 }
